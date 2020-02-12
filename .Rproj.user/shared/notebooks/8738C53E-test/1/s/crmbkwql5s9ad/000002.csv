@@ -1,0 +1,4 @@
+"0","autocheck_question(question_id = 1,
+                   answer =  4)
+"
+"1","<form name=""form_1"" onsubmit=""return validate_form_1()"" method=""post""><input type=""text"" name=""answer_1""><input type=""submit"" value=""check""></form><br>"

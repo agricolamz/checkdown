@@ -1,0 +1,38 @@
+---
+title: "Untitled"
+author: "G. Moroz"
+date: "2/12/2020"
+output: html_document
+---
+
+```{r, include=FALSE}
+library(checkdown)
+```
+
+Solve 2+2
+```{r, results='asis', echo=FALSE}
+autocheck_question(question_id = 1,
+                   answer =  4)
+```
+
+Solve 3+3
+```{r, results='asis', echo=FALSE}
+autocheck_question(question_id = 2,
+                   answer =  6)
+```
+
+Solve 4+4
+```{r, results='asis', echo=FALSE}
+autocheck_question(question_id = 3,
+                   answer =  "la-la")
+```
+
+
+```{r}
+autocheck_environment$data
+```
+
+
+```{r, results='asis', echo=FALSE}
+autocheck_code()
+```
