@@ -1,4 +1,4 @@
-# `Checkdown`
+# `checkdown`
 
 G. Moroz
 
