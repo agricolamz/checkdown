@@ -24,11 +24,11 @@ Imagine that we want to create a checkbox with the answer 4. All you need is to 
 autocheck_question(question_id = 1, answer =  4)
 ```
 
-`question_id` argument should be different for all questions. It is possible to avoid code in the output with the chunk argument `echo=FALSE`. Let's create some more questions.
+`question_id` argument should be different for all questions. It is possible to avoid code in the output with the chunk argument `echo=FALSE`, but I will keep it `TRUE`. It is also possible to change wrong and right answer's messages using `wrong` and `right` arguments of the `autocheck_question()` function. Let's create some more questions.
 
 Solve 3+3:
 ```
-autocheck_question(question_id = 2, answer =  6)
+autocheck_question(question_id = 2, answer =  6, right = "correct", wrong = "not correct")
 ```
 
 Type *la-la*:

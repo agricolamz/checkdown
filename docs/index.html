@@ -384,7 +384,7 @@ devtools::install_github(&quot;agricolamz/checkdown&quot;)</code></pre>
 <input type="text" name="answer_1"><input type="submit" value="check">
 </form>
 <p><br></p>
-<p><code>question_id</code> argument should be different for all questions. It is possible to avoid code in the output with the chunk argument <code>echo=FALSE</code>. Let’s create some more questions.</p>
+<p><code>question_id</code> argument should be different for all questions. It is possible to avoid code in the output with the chunk argument <code>echo=FALSE</code>, but I will keep it <code>TRUE</code>. It is also possible to change wrong and right answer’s messages using <code>wrong</code> and <code>right</code> arguments of the <code>autocheck_question()</code> function. Let’s create some more questions.</p>
 <p>Solve 3+3:</p>
 <pre class="r"><code>autocheck_question(question_id = 2, answer =  6)</code></pre>
 <form name="form_2" onsubmit="return validate_form_2()" method="post">

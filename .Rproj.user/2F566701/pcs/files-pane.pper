@@ -1,6 +1,10 @@
 {
-    "path" : "~/work/packages/lingtypology/lingtypology",
+    "path" : "~/work/packages/checkdown/docs",
     "sortOrder" : [
+        {
+            "ascending" : false,
+            "columnIndex" : 1
+        },
         {
             "ascending" : true,
             "columnIndex" : 2
