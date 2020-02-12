@@ -13,7 +13,7 @@ devtools::install_github("agricolamz/checkdown")
 
 ## Demo
 
-The main goal of this package to create autochecking boxes. Load the library:
+The main goal of this package to create autochecking boxes in `rmarkdown`. Load the library:
 
 ```
 library(checkdown)
