@@ -27,7 +27,7 @@ Imagine that we want to create a checkbox with the answer 4. All you need is to 
 autocheck_question(question_id = 1, answer =  4)
 ```
 
-`question_id` argument should be different for all questions. It is possible to avoid code in the output with the chunk argument `echo=FALSE`, but I will keep it `TRUE`. It is also possible to change wrong and right answer's messages using `wrong` and `right` arguments of the `autocheck_question()` function. Let's create some more questions.
+`question_id` argument should be different for all questions. It is also possible to change wrong and right answer's messages using `wrong` and `right` arguments of the `autocheck_question()` function. Let's create some more questions.
 
 Solve 3+3:
 ```{r, results='asis'}
@@ -39,7 +39,12 @@ Type *la-la*:
 autocheck_question(question_id = 3, answer =  "la-la")
 ```
 
-All you need now is finish your document with a following chunk with the chunck atribute `results='asis'`:
+In order everything work, you need to finish your document with a following chunk with the chunck atribute `results='asis'`:
 ```{r, results='asis'}
 autocheck_code()
 ```
+
+## Some hints
+
+* It is possible to avoid code in the output with the chunk argument `echo=FALSE`.
+* For now the package `checkdown` works only with html output. So if your rmarkdown document has multiple outpout formats, it is better to add arguments `echo = knitr::is_html_output()` and `eval = knitr::is_html_output()` to your chunks with tasks.
