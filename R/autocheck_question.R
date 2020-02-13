@@ -20,16 +20,11 @@ autocheck_question <- function(question_id,
                                answer,
                                right = "Correct",
                                wrong = "I have a different answer") {
-  if(isFALSE("autocheck_environment" %in% ls(parent.frame()))){
-    autocheck_environment <<- new.env()
-    autocheck_environment$data <- data.frame()
+
+  if(grepl("\\.", question_id)){
+    question_id <- gsub("\\.", "_", question_id)
   }
-  autocheck_environment$data <- rbind(autocheck_environment$data,
-                                       data.frame(answer,
-                                                  right,
-                                                  wrong,
-                                                  question_id,
-                                                  stringsAsFactors = FALSE))
+
   cat(paste0(c('<form name="form_',
                question_id,
                '" onsubmit="return validate_form_',
@@ -39,4 +34,31 @@ autocheck_question <- function(question_id,
                question_id,
                '"><input type="submit" value="check"></form><br>'),
              collapse = ""))
+  cat(
+    paste(
+      "<script>",
+      paste(
+        'function validate_form_',
+        question_id,
+        '() {var x = document.forms["form_',
+        question_id,
+        '"]["answer_',
+        question_id,
+        '"].value;',
+        'if (x == "',
+        answer,
+        '"){',
+        'alert("',
+        right,
+        '");',
+        'return false;',
+        '} else {',
+        'alert("',
+        wrong,
+        '");',
+        'return false;}}',
+        sep = "",
+        collapse = "\n"),
+      "</script>",
+      collapse = "\n"))
 }

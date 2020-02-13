@@ -383,25 +383,23 @@ devtools::install_github(&quot;agricolamz/checkdown&quot;)</code></pre>
 <form name="form_1" onsubmit="return validate_form_1()" method="post">
 <input type="text" name="answer_1"><input type="submit" value="check">
 </form>
-<p><br></p>
+<br>
+<script> function validate_form_1() {var x = document.forms["form_1"]["answer_1"].value;if (x == "4"){alert("Correct");return false;} else {alert("I have a different answer");return false;}} </script>
 <p><code>question_id</code> argument should be different for all questions. It is also possible to change wrong and right answer’s messages using <code>wrong</code> and <code>right</code> arguments of the <code>autocheck_question()</code> function. Let’s create some more questions.</p>
 <p>Solve 3+3:</p>
 <pre class="r"><code>autocheck_question(question_id = 2, answer =  6, right = &quot;correct&quot;, wrong = &quot;not correct&quot;)</code></pre>
 <form name="form_2" onsubmit="return validate_form_2()" method="post">
 <input type="text" name="answer_2"><input type="submit" value="check">
 </form>
-<p><br></p>
+<br>
+<script> function validate_form_2() {var x = document.forms["form_2"]["answer_2"].value;if (x == "6"){alert("correct");return false;} else {alert("not correct");return false;}} </script>
 <p>Type <em>la-la</em>:</p>
 <pre class="r"><code>autocheck_question(question_id = 3, answer =  &quot;la-la&quot;)</code></pre>
 <form name="form_3" onsubmit="return validate_form_3()" method="post">
 <input type="text" name="answer_3"><input type="submit" value="check">
 </form>
-<p><br></p>
-<p>In order to everything works, you need to finish your document with a following chunk with the chunck atribute <code>results=&#39;asis&#39;</code>:</p>
-<pre class="r"><code>autocheck_code()</code></pre>
-<script> function validate_form_1() {var x = document.forms["form_1"]["answer_1"].value;if (x == "4"){alert("Correct");return false;} else {alert("I have a different answer");return false;}}
-function validate_form_2() {var x = document.forms["form_2"]["answer_2"].value;if (x == "6"){alert("correct");return false;} else {alert("not correct");return false;}}
-function validate_form_3() {var x = document.forms["form_3"]["answer_3"].value;if (x == "la-la"){alert("Correct");return false;} else {alert("I have a different answer");return false;}} </script>
+<br>
+<script> function validate_form_3() {var x = document.forms["form_3"]["answer_3"].value;if (x == "la-la"){alert("Correct");return false;} else {alert("I have a different answer");return false;}} </script>
 </div>
 <div id="some-hints" class="section level2">
 <h2>Some hints</h2>

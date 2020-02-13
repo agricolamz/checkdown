@@ -39,11 +39,6 @@ Type *la-la*:
 autocheck_question(question_id = 3, answer =  "la-la")
 ```
 
-In order to everything works, you need to finish your document with a following chunk with the chunck atribute `results='asis'`:
-```{r, results='asis'}
-autocheck_code()
-```
-
 ## Some hints
 
 * It is possible to avoid code in the output with the chunk argument `echo=FALSE`.
