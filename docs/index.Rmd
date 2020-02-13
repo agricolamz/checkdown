@@ -42,4 +42,4 @@ autocheck_question(question_id = 3, answer =  "la-la")
 ## Some hints
 
 * It is possible to avoid code in the output with the chunk argument `echo=FALSE`.
-* For now the package `checkdown` works only with html output. So if your rmarkdown document has multiple outpout formats, it is better to add arguments `echo = knitr::is_html_output()` and `eval = knitr::is_html_output()` to your chunks with tasks.
+* For now the package `checkdown` works only with html output. So if your rmarkdown document has multiple outpout formats, it is better to add arguments `eval = knitr::is_html_output()` to your chunks with tasks.

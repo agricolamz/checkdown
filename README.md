@@ -2,13 +2,6 @@
 
 G. Moroz
 
----
-title: "Create checkboxes with `checkdown`"
-author: "G. Moroz"
-date: "12.02.2020"
-output: html_document
----
-
 ## Instalation
 
 This package is not on CRAN, but it will be there. Until then install this package with the following command:
@@ -46,4 +39,4 @@ autocheck_question(question_id = 3, answer =  "la-la")
 ## Some hints
 
 * It is possible to avoid code in the output with the chunk argument `echo=FALSE`.
-* For now the package `checkdown` works only with html output. So if your rmarkdown document has multiple outpout formats, it is better to add arguments `echo = knitr::is_html_output()` and `eval = knitr::is_html_output()` to your chunks with tasks.
+* For now the package `checkdown` works only with html output. So if your rmarkdown document has multiple outpout formats, it is better to add arguments `eval = knitr::is_html_output()` to your chunks with tasks.
