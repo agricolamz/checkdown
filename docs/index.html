@@ -400,6 +400,13 @@ devtools::install_github(&quot;agricolamz/checkdown&quot;)</code></pre>
 </form>
 <br>
 <script> function validate_form_3() {var x = document.forms["form_3"]["answer_3"].value;if (x == "la-la"){alert("Correct");return false;} else {alert("I have a different answer");return false;}} </script>
+<p>It is also possible to create a list of answers for students to choose:</p>
+<pre class="r"><code>autocheck_question(question_id = 4, &quot;banana&quot;, options = c(&quot;apple&quot;, &quot;banana&quot;, &quot;bread&quot;))</code></pre>
+<form name="form_4" onsubmit="return validate_form_4()" method="post">
+<select name="answer_4"><option> apple </option><option> banana </option><option> bread </option></select><input type="submit" value="check">
+</form>
+<br>
+<script> function validate_form_4() {var x = document.forms["form_4"]["answer_4"].value;if (x == "banana"){alert("Correct");return false;} else {alert("I have a different answer");return false;}} </script>
 </div>
 <div id="some-hints" class="section level2">
 <h2>Some hints</h2>

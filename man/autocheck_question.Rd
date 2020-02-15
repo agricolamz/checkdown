@@ -8,7 +8,8 @@ autocheck_question(
   question_id,
   answer,
   right = "Correct",
-  wrong = "I have a different answer"
+  wrong = "I have a different answer",
+  options = NULL
 )
 }
 \arguments{
@@ -19,6 +20,8 @@ autocheck_question(
 \item{right}{form reaction on right answer}
 
 \item{wrong}{form reaction on wrong answer}
+
+\item{options}{vector of values for the selection list type}
 }
 \description{
 Create an html part

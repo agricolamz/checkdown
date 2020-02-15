@@ -39,6 +39,12 @@ Type *la-la*:
 autocheck_question(question_id = 3, answer =  "la-la")
 ```
 
+It is also possible to create a list of answers for students to choose:
+
+```{r, results="asis"}
+autocheck_question(question_id = 4, "banana", options = c("apple", "banana", "bread"))
+```
+
 ## Some hints
 
 * It is possible to avoid code in the output with the chunk argument `echo=FALSE`.

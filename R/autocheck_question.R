@@ -4,6 +4,7 @@
 #' @param answer correct answer (can be a double or a string)
 #' @param right form reaction on right answer
 #' @param wrong form reaction on wrong answer
+#' @param options vector of values for the selection list type
 #'
 #' @seealso \code{\link{autocheck_code}}
 #' @author George Moroz <agricolamz@gmail.com>
@@ -19,10 +20,25 @@
 autocheck_question <- function(question_id,
                                answer,
                                right = "Correct",
-                               wrong = "I have a different answer") {
+                               wrong = "I have a different answer",
+                               options = NULL) {
 
   if(grepl("\\.", question_id)){
     question_id <- gsub("\\.", "_", question_id)
+  }
+
+  if(is.null(options)){
+    form <- paste(c('<input type="text" name="answer_',
+                    question_id,
+                    '">'),
+                  collapse = "")
+  } else {
+    form <- paste(c('<select name="answer_',
+                    question_id,
+                    '">',
+                    paste("<option>", options, "</option>"),
+                    "</select>"),
+                  collapse = "")
   }
 
   cat(paste0(c('<form name="form_',
@@ -30,9 +46,8 @@ autocheck_question <- function(question_id,
                '" onsubmit="return validate_form_',
                question_id,
                '()" method="post">',
-               '<input type="text" name="answer_',
-               question_id,
-               '"><input type="submit" value="check"></form><br>'),
+               form,
+               '<input type="submit" value="check"></form><br>'),
              collapse = ""))
   cat(
     paste(
