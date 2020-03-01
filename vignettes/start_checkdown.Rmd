@@ -22,9 +22,9 @@ devtools::install_github("agricolamz/checkdown")
 
 ## Demo
 
-The main goal of this package to create autochecking boxes in `rmarkdown`. Load the library:
+The main goal of this package to create autochecking boxes in `rmarkdown`. It could be used in class, when teacher share materials and tasks, so student can solve some problems and check themselves. In contrast with the `learnr` package the `checkdown` package works without shiny. Load the library:
 
-```{r, include=FALSE}
+```{r}
 library(checkdown)
 ```
 
