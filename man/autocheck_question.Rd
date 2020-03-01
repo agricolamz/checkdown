@@ -33,9 +33,6 @@ Create an html part
 # ```
 
 }
-\seealso{
-\code{\link{autocheck_code}}
-}
 \author{
 George Moroz <agricolamz@gmail.com>
 }

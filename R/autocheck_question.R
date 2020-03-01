@@ -6,7 +6,6 @@
 #' @param wrong form reaction on wrong answer
 #' @param options vector of values for the selection list type
 #'
-#' @seealso \code{\link{autocheck_code}}
 #' @author George Moroz <agricolamz@gmail.com>
 #' @examples
 #'
@@ -16,6 +15,7 @@
 #'
 #' @export
 #'
+#' @importFrom knitr is_html_output
 
 autocheck_question <- function(question_id,
                                answer,
@@ -23,57 +23,59 @@ autocheck_question <- function(question_id,
                                wrong = "I have a different answer",
                                options = NULL) {
 
-  if(grepl("\\.", question_id)){
-    question_id <- gsub("\\.", "_", question_id)
-  }
+  if(knitr::is_html_output()){
+    if(grepl("\\.", question_id)){
+      question_id <- gsub("\\.", "_", question_id)
+    }
 
-  if(is.null(options)){
-    form <- paste(c('<input type="text" name="answer_',
-                    question_id,
-                    '">'),
-                  collapse = "")
-  } else {
-    form <- paste(c('<select name="answer_',
-                    question_id,
-                    '">',
-                    paste("<option>", options, "</option>"),
-                    "</select>"),
-                  collapse = "")
-  }
+    if(is.null(options)){
+      form <- paste(c('<input type="text" name="answer_',
+                      question_id,
+                      '">'),
+                    collapse = "")
+    } else {
+      form <- paste(c('<select name="answer_',
+                      question_id,
+                      '">',
+                      paste("<option>", options, "</option>"),
+                      "</select>"),
+                    collapse = "")
+    }
 
-  cat(paste0(c('<form name="form_',
-               question_id,
-               '" onsubmit="return validate_form_',
-               question_id,
-               '()" method="post">',
-               form,
-               '<input type="submit" value="check"></form><br>'),
-             collapse = ""))
-  cat(
-    paste(
-      "<script>",
+    cat(paste0(c('<form name="form_',
+                 question_id,
+                 '" onsubmit="return validate_form_',
+                 question_id,
+                 '()" method="post">',
+                 form,
+                 '<input type="submit" value="check"></form><br>'),
+               collapse = ""))
+    cat(
       paste(
-        'function validate_form_',
-        question_id,
-        '() {var x = document.forms["form_',
-        question_id,
-        '"]["answer_',
-        question_id,
-        '"].value;',
-        'if (x == "',
-        answer,
-        '"){',
-        'alert("',
-        right,
-        '");',
-        'return false;',
-        '} else {',
-        'alert("',
-        wrong,
-        '");',
-        'return false;}}',
-        sep = "",
-        collapse = "\n"),
-      "</script>",
-      collapse = "\n"))
+        "<script>",
+        paste(
+          'function validate_form_',
+          question_id,
+          '() {var x = document.forms["form_',
+          question_id,
+          '"]["answer_',
+          question_id,
+          '"].value;',
+          'if (x == "',
+          answer,
+          '"){',
+          'alert("',
+          right,
+          '");',
+          'return false;',
+          '} else {',
+          'alert("',
+          wrong,
+          '");',
+          'return false;}}',
+          sep = "",
+          collapse = "\n"),
+        "</script>",
+        collapse = "\n"))
+  }
 }

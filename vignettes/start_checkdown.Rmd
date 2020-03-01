@@ -1,8 +1,14 @@
 ---
-title: "Create checkboxes with `checkdown`"
-author: "G. Moroz"
-date: "12.02.2020"
-output: html_document
+title: "How to start with `checkdown`"
+author: "George Moroz"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{How to start with checkdown}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
 ---
 
 ## Instalation
