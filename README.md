@@ -1,4 +1,4 @@
-# `checkdown`
+# Create check-fields and check-boxes with `checkdown`
 
 G. Moroz
 
@@ -13,9 +13,9 @@ devtools::install_github("agricolamz/checkdown")
 
 ## Demo
 
-The main goal of this package to create autochecking boxes in `rmarkdown`. Load the library:
+The main goal of this package to create autochecking boxes in `rmarkdown`. It could be used in class, when teacher share materials and tasks, so student can solve some problems and check themselves. In contrast with the `learnr` package the `checkdown` package works without shiny. Load the library:
 
-```{r, include=FALSE}
+```{r}
 library(checkdown)
 ```
 
@@ -45,4 +45,4 @@ autocheck_question(question_id = 4, "banana", options = c("apple", "banana", "br
 ## Some hints
 
 * It is possible to avoid code in the output with the chunk argument `echo=FALSE`.
-* For now the package `checkdown` works only with html output. So if your rmarkdown document has multiple outpout formats, it is better to add arguments `eval = knitr::is_html_output()` to your chunks with tasks.
+* For now the package `checkdown` works only with html output and will not print anything for other otputs.

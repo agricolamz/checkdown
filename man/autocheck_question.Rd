@@ -2,7 +2,7 @@
 % Please edit documentation in R/autocheck_question.R
 \name{autocheck_question}
 \alias{autocheck_question}
-\title{Create an html part}
+\title{Create check-fields and check-boxes for 'rmarkdown'}
 \usage{
 autocheck_question(
   question_id,
@@ -24,7 +24,7 @@ autocheck_question(
 \item{options}{vector of values for the selection list type}
 }
 \description{
-Create an html part
+Create check-fields and check-boxes for 'rmarkdown'
 }
 \examples{
 

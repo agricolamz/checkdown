@@ -1,4 +1,4 @@
-#' Create an html part
+#' Create check-fields and check-boxes for 'rmarkdown'
 #'
 #' @param question_id unique identidier of the question
 #' @param answer correct answer (can be a double or a string)

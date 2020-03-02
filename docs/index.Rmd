@@ -1,7 +1,7 @@
 ---
-title: "Create checkboxes with `checkdown`"
+title: "Create check-fields and check-boxes with `checkdown`"
 author: "G. Moroz"
-date: "12.02.2020"
+date: "`r Sys.Date()`"
 output: html_document
 ---
 
@@ -16,7 +16,7 @@ devtools::install_github("agricolamz/checkdown")
 
 ## Demo
 
-The main goal of this package to create autochecking boxes in `rmarkdown`. It could be used in class, when teacher share materials and tasks, so student can solve some problems and check themselves. In contrast with the `learnr` package the `checkdown` package works without shiny. Load the library:
+The main goal of this package to create autochecking fields and boxes in `rmarkdown`. It could be used in class, when teacher share materials and tasks, so student can solve some problems and check themselves. In contrast with the `learnr` package the `checkdown` package works without shiny. Load the library:
 
 ```{r}
 library(checkdown)
