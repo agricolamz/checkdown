@@ -1,0 +1,6 @@
+checkdown 0.0.2 (12.03.2020)
+  - add random value in question_id, so it is possible not to specify it all the time.
+  - add type "radio" to "autocheck_question()" function
+
+checkdown 0.0.1 (02.03.2020)
+  - initial release.

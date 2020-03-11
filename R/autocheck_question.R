@@ -5,6 +5,7 @@
 #' @param right form reaction on right answer
 #' @param wrong form reaction on wrong answer
 #' @param options vector of values for the selection list type
+#' @param type character that defines type of the list. Possible values: "select", "radio"
 #'
 #' @author George Moroz <agricolamz@gmail.com>
 #' @examples
@@ -17,11 +18,12 @@
 #'
 #' @importFrom knitr is_html_output
 
-autocheck_question <- function(question_id,
-                               answer,
+autocheck_question <- function(answer,
                                right = "Correct",
                                wrong = "I have a different answer",
-                               options = NULL) {
+                               question_id = sample(1:1e5, 1),
+                               options = NULL,
+                               type = "select") {
 
   if(knitr::is_html_output()){
     if(grepl("\\.", question_id)){
@@ -33,13 +35,26 @@ autocheck_question <- function(question_id,
                       question_id,
                       '">'),
                     collapse = "")
-    } else {
+    } else if(type == "select"){
       form <- paste(c('<select name="answer_',
                       question_id,
                       '">',
                       paste("<option>", options, "</option>"),
                       "</select>"),
                     collapse = "")
+    } else if(type == "radio"){
+      form <- paste0(paste(c('<input type="radio" name="answer_',
+                             question_id,
+                             '" id="'), collapse = ""),
+                     options,
+                     '" value="',
+                     options,
+                     '"><label for="',
+                     options,
+                     '">',
+                     options,
+                     '</label><br>',
+                     collapse = "")
     }
 
     cat(paste0(c('<form name="form_',

@@ -5,23 +5,26 @@
 \title{Create check-fields and check-boxes for 'rmarkdown'}
 \usage{
 autocheck_question(
-  question_id,
   answer,
   right = "Correct",
   wrong = "I have a different answer",
-  options = NULL
+  question_id = sample(1:1e+05, 1),
+  options = NULL,
+  type = "select"
 )
 }
 \arguments{
-\item{question_id}{unique identidier of the question}
-
 \item{answer}{correct answer (can be a double or a string)}
 
 \item{right}{form reaction on right answer}
 
 \item{wrong}{form reaction on wrong answer}
 
+\item{question_id}{unique identidier of the question}
+
 \item{options}{vector of values for the selection list type}
+
+\item{type}{character that defines type of the list. Possible values: "select", "radio"}
 }
 \description{
 Create check-fields and check-boxes for 'rmarkdown'

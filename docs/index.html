@@ -11,7 +11,7 @@
 
 <meta name="author" content="G. Moroz" />
 
-<meta name="date" content="2020-03-02" />
+<meta name="date" content="2020-03-12" />
 
 <title>Create check-fields and check-boxes with checkdown</title>
 
@@ -365,14 +365,16 @@ summary {
 
 <h1 class="title toc-ignore">Create check-fields and check-boxes with <code>checkdown</code></h1>
 <h4 class="author">G. Moroz</h4>
-<h4 class="date">2020-03-02</h4>
+<h4 class="date">2020-03-12</h4>
 
 </div>
 
 
 <div id="instalation" class="section level2">
 <h2>Instalation</h2>
-<p>This package is not on CRAN, but it will be there. Until then install this package with the following command:</p>
+<p>Get the stable version from CRAN:</p>
+<pre class="r"><code>install.packages(&quot;lingtypology&quot;)</code></pre>
+<p>… or get the development version from GitHub:</p>
 <pre class="r"><code>install.packages(&quot;devtools&quot;)
 devtools::install_github(&quot;agricolamz/checkdown&quot;)</code></pre>
 </div>
@@ -381,34 +383,40 @@ devtools::install_github(&quot;agricolamz/checkdown&quot;)</code></pre>
 <p>The main goal of this package to create autochecking fields and boxes in <code>rmarkdown</code>. It could be used in class, when teacher share materials and tasks, so student can solve some problems and check themselves. In contrast with the <code>learnr</code> package the <code>checkdown</code> package works without shiny. Load the library:</p>
 <pre class="r"><code>library(checkdown)</code></pre>
 <p>Imagine that we want to create a checkbox with the answer 4. All you need is to create a following chunk with the chunck atribute <code>results=&#39;asis&#39;</code> in your <code>rmarkdown</code> document:</p>
-<pre class="r"><code>autocheck_question(question_id = 1, answer =  4)</code></pre>
-<form name="form_1" onsubmit="return validate_form_1()" method="post">
-<input type="text" name="answer_1"><input type="submit" value="check">
+<pre class="r"><code>autocheck_question(answer =  4)</code></pre>
+<form name="form_3443" onsubmit="return validate_form_3443()" method="post">
+<input type="text" name="answer_3443"><input type="submit" value="check">
 </form>
 <br>
-<script> function validate_form_1() {var x = document.forms["form_1"]["answer_1"].value;if (x == "4"){alert("Correct");return false;} else {alert("I have a different answer");return false;}} </script>
-<p><code>question_id</code> argument should be different for all questions. It is also possible to change wrong and right answer’s messages using <code>wrong</code> and <code>right</code> arguments of the <code>autocheck_question()</code> function. Let’s create some more questions.</p>
+<script> function validate_form_3443() {var x = document.forms["form_3443"]["answer_3443"].value;if (x == "4"){alert("Correct");return false;} else {alert("I have a different answer");return false;}} </script>
+<p>It is possible to change wrong and right answer’s messages using <code>wrong</code> and <code>right</code> arguments of the <code>autocheck_question()</code> function. Let’s create some more questions.</p>
 <p>Solve 3+3:</p>
-<pre class="r"><code>autocheck_question(question_id = 2, answer =  6, right = &quot;correct&quot;, wrong = &quot;not correct&quot;)</code></pre>
-<form name="form_2" onsubmit="return validate_form_2()" method="post">
-<input type="text" name="answer_2"><input type="submit" value="check">
+<pre class="r"><code>autocheck_question(answer =  6, right = &quot;correct&quot;, wrong = &quot;not correct&quot;)</code></pre>
+<form name="form_6475" onsubmit="return validate_form_6475()" method="post">
+<input type="text" name="answer_6475"><input type="submit" value="check">
 </form>
 <br>
-<script> function validate_form_2() {var x = document.forms["form_2"]["answer_2"].value;if (x == "6"){alert("correct");return false;} else {alert("not correct");return false;}} </script>
+<script> function validate_form_6475() {var x = document.forms["form_6475"]["answer_6475"].value;if (x == "6"){alert("correct");return false;} else {alert("not correct");return false;}} </script>
 <p>Type <em>la-la</em>:</p>
-<pre class="r"><code>autocheck_question(question_id = 3, answer =  &quot;la-la&quot;)</code></pre>
-<form name="form_3" onsubmit="return validate_form_3()" method="post">
-<input type="text" name="answer_3"><input type="submit" value="check">
+<pre class="r"><code>autocheck_question(answer =  &quot;la-la&quot;)</code></pre>
+<form name="form_66546" onsubmit="return validate_form_66546()" method="post">
+<input type="text" name="answer_66546"><input type="submit" value="check">
 </form>
 <br>
-<script> function validate_form_3() {var x = document.forms["form_3"]["answer_3"].value;if (x == "la-la"){alert("Correct");return false;} else {alert("I have a different answer");return false;}} </script>
+<script> function validate_form_66546() {var x = document.forms["form_66546"]["answer_66546"].value;if (x == "la-la"){alert("Correct");return false;} else {alert("I have a different answer");return false;}} </script>
 <p>It is also possible to create a list of answers for students to choose:</p>
-<pre class="r"><code>autocheck_question(question_id = 4, &quot;banana&quot;, options = c(&quot;apple&quot;, &quot;banana&quot;, &quot;bread&quot;))</code></pre>
-<form name="form_4" onsubmit="return validate_form_4()" method="post">
-<select name="answer_4"><option> apple </option><option> banana </option><option> bread </option></select><input type="submit" value="check">
+<pre class="r"><code>autocheck_question(&quot;banana&quot;, options = c(&quot;apple&quot;, &quot;banana&quot;, &quot;bread&quot;))</code></pre>
+<form name="form_15062" onsubmit="return validate_form_15062()" method="post">
+<select name="answer_15062"><option> apple </option><option> banana </option><option> bread </option></select><input type="submit" value="check">
 </form>
 <br>
-<script> function validate_form_4() {var x = document.forms["form_4"]["answer_4"].value;if (x == "banana"){alert("Correct");return false;} else {alert("I have a different answer");return false;}} </script>
+<script> function validate_form_15062() {var x = document.forms["form_15062"]["answer_15062"].value;if (x == "banana"){alert("Correct");return false;} else {alert("I have a different answer");return false;}} </script>
+<pre class="r"><code>autocheck_question(&quot;banana&quot;, options = c(&quot;apple&quot;, &quot;banana&quot;, &quot;bread&quot;), type = &quot;radio&quot;)</code></pre>
+<form name="form_11367" onsubmit="return validate_form_11367()" method="post">
+<input type="radio" name="answer_11367" id="apple" value="apple"><label for="apple">apple</label><br><input type="radio" name="answer_11367" id="banana" value="banana"><label for="banana">banana</label><br><input type="radio" name="answer_11367" id="bread" value="bread"><label for="bread">bread</label><br><input type="submit" value="check">
+</form>
+<br>
+<script> function validate_form_11367() {var x = document.forms["form_11367"]["answer_11367"].value;if (x == "banana"){alert("Correct");return false;} else {alert("I have a different answer");return false;}} </script>
 </div>
 <div id="some-hints" class="section level2">
 <h2>Some hints</h2>
