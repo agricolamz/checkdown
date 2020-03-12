@@ -1,3 +1,7 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 docs.*
+^LICENSE
+^README.md
+^CONTRIBUTING.md
+^ISSUE_TEMPLATE.md

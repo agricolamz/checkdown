@@ -14,7 +14,7 @@ G. Moroz
 Get the stable version from CRAN:
 
 ```{r, eval=FALSE}
-install.packages("lingtypology")
+install.packages("checkdown")
 ```
 
 … or get the development version from GitHub:
