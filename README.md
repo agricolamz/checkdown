@@ -5,8 +5,6 @@
 [![](http://cranlogs.r-pkg.org/badges/grand-total/checkdown)](https://CRAN.R-project.org/package=checkdown)
 [![DOI](https://zenodo.org/badge/240126674.svg)](https://zenodo.org/badge/latestdoi/240126674)
 
-
-
 G. Moroz
 
 ## Instalation
@@ -47,6 +45,11 @@ autocheck_question(answer =  6, right = "correct", wrong = "not correct")
 Type *la-la*:
 ```{r, results='asis'}
 autocheck_question(answer =  "la-la")
+```
+
+Number of answers is not limited:
+```{r, results='asis'}
+autocheck_question(answer =  1:5)
 ```
 
 It is also possible to create a list of answers for students to choose:

@@ -1,7 +1,7 @@
 #' Create check-fields and check-boxes for 'rmarkdown'
 #'
 #' @param question_id unique identidier of the question
-#' @param answer correct answer (can be a double or a string)
+#' @param answer correct answer (can be a double or a string). It is possible to put here a vector of several answers.
 #' @param right form reaction on right answer
 #' @param wrong form reaction on wrong answer
 #' @param options vector of values for the selection list type
@@ -11,7 +11,7 @@
 #' @examples
 #'
 #' # ```{r, results='asis', echo=FALSE}
-#' # autocheck_question(question_id = 1, answer = 5)
+#' # autocheck_question(answer = 5)
 #' # ```
 #'
 #' @export
@@ -76,9 +76,9 @@ autocheck_question <- function(answer,
           '"]["answer_',
           question_id,
           '"].value;',
-          'if (x == "',
-          answer,
-          '"){',
+          'if (',
+          paste0('x == "', answer, '"', collapse = '|'),
+          '){',
           'alert("',
           right,
           '");',

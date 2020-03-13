@@ -14,7 +14,7 @@ autocheck_question(
 )
 }
 \arguments{
-\item{answer}{correct answer (can be a double or a string)}
+\item{answer}{correct answer (can be a double or a string). It is possible to put here a vector of several answers.}
 
 \item{right}{form reaction on right answer}
 
@@ -32,7 +32,7 @@ Create check-fields and check-boxes for 'rmarkdown'
 \examples{
 
 # ```{r, results='asis', echo=FALSE}
-# autocheck_question(question_id = 1, answer = 5)
+# autocheck_question(answer = 5)
 # ```
 
 }

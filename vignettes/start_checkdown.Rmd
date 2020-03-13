@@ -51,12 +51,19 @@ Type *la-la*:
 autocheck_question(answer =  "la-la")
 ```
 
+Number of answers is not limited:
+```{r, results='asis'}
+autocheck_question(answer =  1:5)
+```
+
 It is also possible to create a list of answers for students to choose:
 
 ```{r, results="asis"}
 autocheck_question("banana", options = c("apple", "banana", "bread"))
 autocheck_question("banana", options = c("apple", "banana", "bread"), type = "radio")
 ```
+
+
 
 ## Some hints
 
