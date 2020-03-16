@@ -5,6 +5,7 @@
 #' @param right form reaction on right answer
 #' @param wrong form reaction on wrong answer
 #' @param options vector of values for the selection list type
+#' @param button_label character value that will be displayed on the button
 #' @param type character that defines type of the list. Possible values: "select", "radio"
 #'
 #' @author George Moroz <agricolamz@gmail.com>
@@ -23,6 +24,7 @@ autocheck_question <- function(answer,
                                wrong = "I have a different answer",
                                question_id = sample(1:1e5, 1),
                                options = NULL,
+                               button_label = "check",
                                type = "select") {
 
   if(knitr::is_html_output()){
@@ -63,7 +65,9 @@ autocheck_question <- function(answer,
                  question_id,
                  '()" method="post">',
                  form,
-                 '<input type="submit" value="check"></form><br>'),
+                 '<input type="submit" value="',
+                 button_label,
+                 '"></form><br>'),
                collapse = ""))
     cat(
       paste(

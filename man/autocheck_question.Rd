@@ -10,6 +10,7 @@ autocheck_question(
   wrong = "I have a different answer",
   question_id = sample(1:1e+05, 1),
   options = NULL,
+  button_label = "check",
   type = "select"
 )
 }
@@ -23,6 +24,8 @@ autocheck_question(
 \item{question_id}{unique identidier of the question}
 
 \item{options}{vector of values for the selection list type}
+
+\item{button_label}{character value that will be displayed on the button}
 
 \item{type}{character that defines type of the list. Possible values: "select", "radio"}
 }

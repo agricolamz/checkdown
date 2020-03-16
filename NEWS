@@ -2,6 +2,7 @@ checkdown 0.0.2 (13.03.2020)
   - add random value in question_id, so it is possible not to specify it all the time.
   - add type "radio" and to "autocheck_question()" function.
   - add possibility to have multiple answers
+  - add argument "button_label" that controls the value that will be displayed on the button
 
 checkdown 0.0.1 (02.03.2020)
   - initial release.
