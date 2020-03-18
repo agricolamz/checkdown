@@ -1,5 +1,7 @@
 #' Create check-fields and check-boxes for 'rmarkdown'
 #'
+#' @param hint_text hint paragraph text; can contain markdown
+#' @param click_text click paragraph text; can contain markdown
 #' @param hint_id unique identidier of the question
 #'
 #' @author George Moroz <agricolamz@gmail.com>

@@ -11,6 +11,10 @@ check_hint(
 )
 }
 \arguments{
+\item{hint_text}{hint paragraph text; can contain markdown}
+
+\item{click_text}{click paragraph text; can contain markdown}
+
 \item{hint_id}{unique identidier of the question}
 }
 \description{
