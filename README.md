@@ -67,19 +67,19 @@ check_question("banana", options = c("apple", "banana", "bread"), type = "radio"
 Sometimes you now in advance what kind of mistakes will your students do. Some students are shy and don't like ask questions, so hints could partially solve  this problem. Again all you need is to create a following chunk with the chunck atribute `results='asis'` in your `rmarkdown` document:
 
 ```{r, results="asis"}
-check_hint("You can use the rmarkdown chunk results='asis' argument")
+check_hint("You can use the rmarkdown package")
 ```
 
 Of course it is possible to change the message:
 ```{r, results="asis"}
-check_hint("You can use the rmarkdown chunk results='asis' argument",
+check_hint("You can use the rmarkdown package",
            click_text = "CLICK HERE")
 ```
 
 It is possible to use Markdown inside messages:
 
 ```{r, results="asis"}
-check_hint("* `Markdown` is **good**",
+check_hint("* You can use the **`rmarkdown` package**",
            click_text = "Click he`R`e")
 check_question(answer =  4, 
                wrong = "a**R**e you su**R**e", 
