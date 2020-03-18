@@ -12,26 +12,35 @@
 #' @examples
 #'
 #' # ```{r, results='asis', echo=FALSE}
-#' # autocheck_question(answer = 5)
+#' # check_question(answer = 5)
 #' # ```
 #'
 #' @export
 #'
 #' @importFrom knitr is_html_output
+#' @importFrom markdown markdownToHTML
+#'
 
-autocheck_question <- function(answer,
-                               right = "Correct",
-                               wrong = "I have a different answer",
-                               question_id = sample(1:1e5, 1),
-                               options = NULL,
-                               button_label = "check",
-                               type = "select") {
+check_question <- function(answer,
+                           right = "Correct",
+                           wrong = "I have a different answer",
+                           question_id = sample(1:1e5, 1),
+                           options = NULL,
+                           button_label = "check",
+                           type = "select") {
 
   if(knitr::is_html_output()){
     if(grepl("\\.", question_id)){
       question_id <- gsub("\\.", "_", question_id)
     }
-
+    right <- (markdown::markdownToHTML(text = right,
+                                       output = NULL,
+                                       fragment.only = TRUE))
+    right <- gsub("(<.?p>)|(\n)|(\\#)", "", right)
+    wrong <- (markdown::markdownToHTML(text = wrong,
+                                       output = NULL,
+                                       fragment.only = TRUE))
+    wrong <- gsub("(<.?p>)|(\n)|(\\#)", "", wrong)
     if(is.null(options)){
       form <- paste(c('<input type="text" name="answer_',
                       question_id,

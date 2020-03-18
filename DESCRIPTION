@@ -9,7 +9,7 @@ Description: Creates auto checking check-fields and check-boxes for 'rmarkdown' 
 Imports: knitr
 URL: https://agricolamz.github.io/checkdown/
 BugReports: https://github.com/agricolamz/checkdown/issues
-Suggests: rmarkdown
+Suggests: rmarkdown, markdown
 License: GPL (>= 2)
 Encoding: UTF-8
 RoxygenNote: 7.0.2
