@@ -1,7 +1,7 @@
 Package: checkdown
 Type: Package
 Title: Check-Fields and Check-Boxes  for 'rmarkdown'
-Version: 0.0.2
+Version: 0.0.3
 Depends: R (>= 3.5.0)
 Author: George Moroz
 Maintainer: George Moroz <agricolamz@gmail.com>

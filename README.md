@@ -1,4 +1,4 @@
-# Create check-fields and check-boxes with `checkdown`
+# `checkdown` <img src="man/figures/logo.png" align="right" width="120" />
 
 [![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
 [![CRAN version](http://www.r-pkg.org/badges/version/checkdown)](https://cran.r-project.org/package=checkdown)
@@ -24,7 +24,7 @@ devtools::install_github("agricolamz/checkdown")
 
 ## 1. Demo
 
-The main goal of this package to create checking fields and boxes in `rmarkdown`. It could be used in class, when teacher share materials and tasks, so student can solve some problems and check themselves. It is really important since some students are too shy to ask a question, so you can create tasks that will check on the fly the understanding of the class material and give some hints to those students that get stuck. In contrast with the `learnr` package the `checkdown` package works without shiny. Load the library:
+The main goal of this package to create checking fields and boxes in `rmarkdown`. It could be used in class, when teacher share materials and tasks, so student can solve some problems and check themselves. It is really important since some students are too shy to ask a question, so you can create tasks that will check on the fly the understanding of the class material and give some hints to those students that get stuck. In contrast to the [`learnr`](https://rstudio.github.io/learnr/index.html) package the `checkdown` package works without `shiny` and could be stored as a simple `.html` page (e. g. on Github Pages). Load the library:
 
 ```{r}
 library(checkdown)
