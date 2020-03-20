@@ -8,10 +8,11 @@ check_question(
   answer,
   right = "Correct",
   wrong = "I have a different answer",
-  question_id = sample(1:1e+05, 1),
   options = NULL,
   button_label = "check",
-  type = "select"
+  type = "select",
+  random_answer_order = FALSE,
+  question_id = sample(1:1e+05, 1)
 )
 }
 \arguments{
@@ -21,13 +22,15 @@ check_question(
 
 \item{wrong}{form reaction on wrong answer}
 
-\item{question_id}{unique identidier of the question}
-
 \item{options}{vector of values for the selection list type}
 
 \item{button_label}{character value that will be displayed on the button}
 
-\item{type}{character that defines type of the list. Possible values: "select", "radio"}
+\item{type}{character that defines type of the list. Possible values: "select", "radio", "checkbox"}
+
+\item{random_answer_order}{logical argument that denotes whether answers should be shuffled}
+
+\item{question_id}{unique identidier of the question}
 }
 \description{
 Create check-fields and check-boxes for 'rmarkdown'
