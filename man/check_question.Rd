@@ -9,8 +9,9 @@ check_question(
   right = "Correct",
   wrong = "I have a different answer",
   options = NULL,
-  button_label = "check",
   type = "select",
+  alignment = FALSE,
+  button_label = "check",
   random_answer_order = FALSE,
   question_id = sample(1:1e+05, 1)
 )
@@ -24,9 +25,11 @@ check_question(
 
 \item{options}{vector of values for the selection list type}
 
-\item{button_label}{character value that will be displayed on the button}
+\item{type}{character that defines type of the list. Possible values: \code{select}, \code{radio}, \code{checkbox}}
 
-\item{type}{character that defines type of the list. Possible values: "select", "radio", "checkbox"}
+\item{alignment}{logical argument for options' alignment: vertical if \code{TRUE}, horizontal if \code{FALSE}}
+
+\item{button_label}{character value that will be displayed on the button}
 
 \item{random_answer_order}{logical argument that denotes whether answers should be shuffled}
 

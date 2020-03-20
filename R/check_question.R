@@ -4,10 +4,11 @@
 #' @param answer correct answer (can be a double or a string). It is possible to put here a vector of several answers.
 #' @param right form reaction on right answer
 #' @param wrong form reaction on wrong answer
+#' @param alignment logical argument for options' alignment: vertical if \code{TRUE}, horizontal if \code{FALSE}
 #' @param options vector of values for the selection list type
 #' @param button_label character value that will be displayed on the button
 #' @param random_answer_order logical argument that denotes whether answers should be shuffled
-#' @param type character that defines type of the list. Possible values: "select", "radio", "checkbox"
+#' @param type character that defines type of the list. Possible values: \code{select}, \code{radio}, \code{checkbox}
 #'
 #' @author George Moroz <agricolamz@gmail.com>
 #' @examples
@@ -26,8 +27,9 @@ check_question <- function(answer,
                            right = "Correct",
                            wrong = "I have a different answer",
                            options = NULL,
-                           button_label = "check",
                            type = "select",
+                           alignment = FALSE,
+                           button_label = "check",
                            random_answer_order = FALSE,
                            question_id = sample(1:1e5, 1)) {
 
@@ -44,6 +46,7 @@ check_question <- function(answer,
                                        fragment.only = TRUE))
     wrong <- gsub("(<.?p>)|(\n)|(\\#)", "", wrong)
     options <- if(random_answer_order){sample(options)} else {options}
+    alignment <- ifelse(alignment, " ", "<br>")
 
     if(is.null(options)){
       form <- paste(c('<input type="text" name="answer_',
@@ -61,14 +64,17 @@ check_question <- function(answer,
       form <- paste0('<input type="radio" name="answer_',
                      question_id,
                      '" id="',
-                     options,
+                     question_id,
+                     '_',
+                     seq_along(options),
                      '" value="',
                      options,
                      '"><label for="',
                      options,
                      '">',
                      options,
-                     '</label><br>',
+                     '</label>',
+                     alignment,
                      collapse = "")
     } else if(type == "checkbox"){
       form <- paste0('<input type="checkbox" id="answer_',
@@ -83,16 +89,18 @@ check_question <- function(answer,
                      seq_along(options),
                      '">',
                      options,
-                     '</label><br>',
+                     '</label>',
+                     alignment,
                      collapse = "")
     }
+    form <- gsub(x = form, pattern = "<br>$", replacement = "")
     cat(paste0(c('<form name="form_',
                  question_id,
                  '" onsubmit="return validate_form_',
                  question_id,
                  '()" method="post">',
                  form,
-                 '<input type="submit" value="',
+                 '<br><input type="submit" value="',
                  button_label,
                  '"></form><p id="result_',
                  question_id,

@@ -63,6 +63,12 @@ check_question("banana", options = c("apple", "banana", "bread"), type = "radio"
 check_question(c("banana", "apple"), options = c("apple", "banana", "bread"), type = "checkbox")
 ```
 
+If the list of possible answers is small, it is possible to align them in one line using `alignment` argument:
+
+```{r, results="asis"}
+check_question("banana", options = c("apple", "banana", "bread"), type = "radio", alignment = TRUE)
+```
+
 You can shuffle answers using the `random_answer_order` argument:
 ```{r, results="asis"}
 check_question("banana", options = c("apple", "banana", "bread"), type = "radio", random_answer_order = TRUE)
