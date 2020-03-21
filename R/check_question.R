@@ -93,6 +93,9 @@ check_question <- function(answer,
                      '</label>',
                      alignment,
                      collapse = "")
+    } else {
+      stop("Possible values for the type variable: 'select', 'radio' or 'checkbox'")
+
     }
     form <- gsub(x = form, pattern = "<br>$", replacement = "")
     cat(paste0(c('<form name="form_',
