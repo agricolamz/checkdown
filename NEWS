@@ -2,6 +2,7 @@ checkdown 0.0.3 (20.03.2020)
   - add the "random_answer_order" argument to "check_question()"
   - add type "checkbox" to "autocheck_question()" function.
   - add the "alignment" argument to "check_question()"
+  - fix the problem with negative numbers
 
 checkdown 0.0.2 (18.03.2020)
   - add random value in question_id, so it is possible not to specify it all the time.

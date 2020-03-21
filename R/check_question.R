@@ -47,6 +47,7 @@ check_question <- function(answer,
     wrong <- gsub("(<.?p>)|(\n)|(\\#)", "", wrong)
     options <- if(random_answer_order){sample(options)} else {options}
     alignment <- ifelse(alignment, " ", "<br>")
+    answer <- as.character(answer)
 
     if(is.null(options)){
       form <- paste(c('<input type="text" name="answer_',
