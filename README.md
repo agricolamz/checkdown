@@ -104,3 +104,9 @@ check_question(answer =  4,
 
 * It is possible to avoid code in the output `.html`. Just use the chunk argument `echo=FALSE`.
 * For now the package `checkdown` works only with html output and will not print anything for other otputs.
+* Be careful with number precision: rounding could be different on different computers so if you ask your student to calculate `log(3/4)` it is possible that they will see only 6 or 7 numbers after the comma. So it make sence explicitly specify precision using `round()` function.
+
+```{r, results="asis"}
+log(3/4)
+check_question(answer =  round(log(3/4), 6))
+```
