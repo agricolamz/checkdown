@@ -98,7 +98,36 @@ check_question(answer =  4,
                right = "### `R`ight")
 ```
 
-## 2. Some important notes
+## 2. Insearting images
+
+Sometimes it is nice to use images as a question. It also could be useful to insert images in hints. In order to do it you need to use `insert_images()` function, and enumerate the correct answer.
+
+```{r, results="asis"}
+check_question(answer = 3, 
+               type = "radio",
+               options = insert_images(c("windows.png", 
+                                         "mac.png",
+                                         "linux.png"), 
+                                         image_width = 30))
+```
+
+Arguments `image_width` and `image_height` also except vector of values in case you need different size for different pictures. It is also possible to create a picture during the session, save it and use in `checkdown` functions.
+
+```{r}
+tmp <- tempfile(fileext = ".png")
+library(ggplot2)
+ggplot(data = mtcars, aes(mpg, disp)) + geom_point()
+ggsave(filename = tmp)
+```
+
+Let's use obtained picture in the hint (notice, how I used percantage in the `image_width` argument):
+
+```{r, results="asis"}
+check_hint(paste("Here is our plot: <br>", 
+                 insert_images(tmp, image_width = "40%")))
+```
+
+## 3. Some important notes
 
 * It is possible to avoid code in the output `.html`. Just use the chunk argument `echo=FALSE`.
 * For now the package `checkdown` works only with html output and will not print anything for other otputs.

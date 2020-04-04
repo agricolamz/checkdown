@@ -46,8 +46,13 @@ check_question <- function(answer,
                                        fragment.only = TRUE))
     wrong <- gsub("(<.?p>)|(\n)|(\\#)", "", wrong)
     options <- if(random_answer_order){sample(options)} else {options}
+    options_value <- if(TRUE %in% grepl("^<img src=", options)){seq_along(options)} else {options}
     alignment <- ifelse(alignment, " ", "<br>")
     answer <- as.character(answer)
+
+    if(TRUE %in% grepl("^<img src=", options) & type == "select"){
+      stop('It is imposible to use images with type = "select". Please use type = "radio" or type = "checkbox"')
+    }
 
     if(is.null(options)){
       form <- paste(c('<input type="text" name="answer_',
@@ -69,9 +74,9 @@ check_question <- function(answer,
                      '_',
                      seq_along(options),
                      '" value="',
-                     options,
+                     options_value,
                      '"><label for="',
-                     options,
+                     seq_along(options),
                      '">',
                      options,
                      '</label>',
@@ -83,7 +88,7 @@ check_question <- function(answer,
                      '_',
                      seq_along(options),
                      '" value="',
-                     options,
+                     options_value,
                      '"><label for="answer_',
                      question_id,
                      "_",
@@ -157,7 +162,7 @@ check_question <- function(answer,
         paste0('x',
                seq_along(options),
                '.checked == ',
-               tolower(options %in% answer),
+               tolower(options_value %in% answer),
                collapse = "&"),
         '){text = "',
         right,
