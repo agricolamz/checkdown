@@ -4,6 +4,8 @@
 #' @param click_text click paragraph text; can contain markdown
 #' @param hint_id unique identidier of the question
 #'
+#' @return returns the html and javascript code
+#'
 #' @author George Moroz <agricolamz@gmail.com>
 #' @examples
 #'

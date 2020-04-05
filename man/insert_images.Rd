@@ -20,6 +20,9 @@ insert_images(
 
 \item{image_height}{image heights. Could be absolute value in pixels or percantage.}
 }
+\value{
+returns the string with html code
+}
 \description{
 Insert multiple images into questions and hints
 }

@@ -10,6 +10,8 @@
 #' @param random_answer_order logical argument that denotes whether answers should be shuffled
 #' @param type character that defines type of the list. Possible values: \code{select}, \code{radio}, \code{checkbox}
 #'
+#' @return returns the html and javascript code
+#'
 #' @author George Moroz <agricolamz@gmail.com>
 #' @examples
 #'

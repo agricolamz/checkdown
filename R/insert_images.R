@@ -5,6 +5,8 @@
 #' @param image_width image widths. Could be absolute value in pixels or percantage.
 #' @param image_height image heights. Could be absolute value in pixels or percantage.
 #'
+#' @return returns the string with html code
+#'
 #' @author George Moroz <agricolamz@gmail.com>
 #' @examples
 #'

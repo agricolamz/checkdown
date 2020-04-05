@@ -17,6 +17,9 @@ check_hint(
 
 \item{hint_id}{unique identidier of the question}
 }
+\value{
+returns the html and javascript code
+}
 \description{
 Create check-fields and check-boxes for 'rmarkdown'
 }
