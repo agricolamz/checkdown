@@ -100,7 +100,7 @@ check_question(answer =  4,
                right = "### `R`ight")
 ```
 
-## 2. Insearting images
+## 2. Inserting images
 
 Sometimes it is nice to use images as a question. It also could be useful to insert images in hints. In order to do it you need to use `insert_images()` function, and enumerate the correct answer.
 
