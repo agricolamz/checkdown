@@ -1,5 +1,6 @@
 checkdown 0.0.4 (04.04.2020)
   - add the "insert_images()" function for adding images to questions and hints
+  - correct quote clash when using url links
 
 checkdown 0.0.3 (20.03.2020)
   - add the "random_answer_order" argument to "check_question()"

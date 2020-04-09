@@ -97,7 +97,7 @@ check_hint("You can use the rmarkdown package",
 It is possible to use Markdown inside messages:
 
 ```{r, results="asis"}
-check_hint("* You can use the **`rmarkdown` package**",
+check_hint("* You can use the `markdown` **inside** the [`chcekdown` package](https://agricolamz.github.io/checkdown/)",
            click_text = "Click he`R`e")
 check_question(answer =  4, 
                wrong = "a**R**e you su**R**e", 
