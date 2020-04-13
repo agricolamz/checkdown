@@ -85,17 +85,25 @@ check_hint("You can use the rmarkdown package")
 Of course it is possible to change the message:
 ```{r, results="asis"}
 check_hint("You can use the rmarkdown package inside checkdown",
-           click_text = "CLICK HERE")
+           hint_title = "CLICK HERE")
 ```
 
 It is possible to use Markdown inside messages:
 
 ```{r, results="asis"}
 check_hint("* You can use the `markdown` **inside** the [`chcekdown` package](https://agricolamz.github.io/checkdown/)",
-           click_text = "Click he`R`e")
+           hint_title = "Click he`R`e")
 check_question(answer =  4, 
                wrong = "a**R**e you su**R**e", 
                right = "### `R`ight")
+```
+
+There is also a function for multiple hints:
+
+```{r, results="asis"}
+check_hints(hint_text = c("look into the hint 2", "look into the hint 1"),
+            hint_title = c("hint 1", "hint 2"), 
+            list_title = "list of hints")
 ```
 
 ## 2. Inserting images
