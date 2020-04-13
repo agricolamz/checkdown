@@ -29,7 +29,7 @@ check_hints <- function(hint_text,
                         list_title = "Click here to see/close the list of hints",
                         hint_id){
   if(knitr::is_html_output()){
-    hint_text <- paste0(hint_predix, hint_text, hint_suffix)
+    hint_text <- paste0(hint_prefix, hint_text, hint_suffix)
     df <- data.frame(hint_text, hint_title, stringsAsFactors = FALSE)
     df$hint_id <- sample(2:1e5, nrow(df))
 
