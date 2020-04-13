@@ -7,6 +7,8 @@
 check_hints(
   hint_text,
   hint_title = "Click here to see/close the hint",
+  hint_title_prefix = "",
+  hint_title_suffix = "",
   list_title = "Click here to see/close the list of hints",
   hint_id
 )
@@ -19,6 +21,10 @@ check_hints(
 \item{list_title}{unique identidier for each hint}
 
 \item{hint_id}{unique identidier for each hint}
+
+\item{hint_prefix}{string that added to each hint_title to the left side}
+
+\item{hint_suffix}{string that added to each hint_title to the right side}
 }
 \value{
 returns the html and javascript code
