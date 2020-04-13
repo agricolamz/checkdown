@@ -18,13 +18,13 @@ check_hints(
 
 \item{hint_title}{hint title texts; can contain markdown}
 
+\item{hint_title_prefix}{string that added to each hint_title to the left side}
+
+\item{hint_title_suffix}{string that added to each hint_title to the right side}
+
 \item{list_title}{unique identidier for each hint}
 
 \item{hint_id}{unique identidier for each hint}
-
-\item{hint_prefix}{string that added to each hint_title to the left side}
-
-\item{hint_suffix}{string that added to each hint_title to the right side}
 }
 \value{
 returns the html and javascript code

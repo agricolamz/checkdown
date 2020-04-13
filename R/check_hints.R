@@ -2,8 +2,8 @@
 #'
 #' @param hint_text hint paragraph texts; can contain markdown
 #' @param hint_title hint title texts; can contain markdown
-#' @param hint_prefix string that added to each hint_title to the left side
-#' @param hint_suffix string that added to each hint_title to the right side
+#' @param hint_title_prefix string that added to each hint_title to the left side
+#' @param hint_title_suffix string that added to each hint_title to the right side
 #' @param hint_id unique identidier for each hint
 #' @param list_title unique identidier for each hint
 #'
@@ -29,7 +29,7 @@ check_hints <- function(hint_text,
                         list_title = "Click here to see/close the list of hints",
                         hint_id){
   if(knitr::is_html_output()){
-    hint_text <- paste0(hint_prefix, hint_text, hint_suffix)
+    hint_title <- paste0(hint_title_prefix, hint_title, hint_title_suffix)
     df <- data.frame(hint_text, hint_title, stringsAsFactors = FALSE)
     df$hint_id <- sample(2:1e5, nrow(df))
 
