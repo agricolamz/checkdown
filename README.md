@@ -22,7 +22,7 @@ install.packages("devtools")
 devtools::install_github("agricolamz/checkdown")
 ```
 
-## 1. Demo (it is better to look in [`.html` version](https://agricolamz.github.io/checkdown/))
+## 1. Demo (it is better to look in the [html-version](https://agricolamz.github.io/checkdown/))
 
 The main goal of this package to create checking fields and boxes in `rmarkdown`. It could be used in class, when teacher share materials and tasks, so student can solve some problems and check themselves. It is really important since some students are too shy to ask a question, so you can create tasks that will check on the fly the understanding of the class material and give some hints to those students that get stuck. In contrast to the [`learnr`](https://rstudio.github.io/learnr/index.html) package the `checkdown` package works without `shiny` and could be stored as a simple `.html` page (e. g. on Github Pages). In contrast to the [`exams`](http://www.r-exams.org/) output the `checkdown` package creates intaractive autochecking tasks. The interactive virsion of the [`exams`](http://www.r-exams.org/) output is bind to Blackboard Learn, that is really nice, but looks like an overkill for the simple task that `checkdown` solves.
 
