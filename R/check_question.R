@@ -50,7 +50,7 @@ check_question <- function(answer,
     options <- if(random_answer_order){sample(options)} else {options}
     options_value <- if(TRUE %in% grepl("^<img src=", options)){seq_along(options)} else {options}
     alignment <- ifelse(alignment, " ", "<br>")
-    answer <- as.character(answer)
+    answer <- if(!is.null(answer)) as.character(answer)
 
     if(TRUE %in% grepl("^<img src=", options) & type == "select"){
       stop('It is imposible to use images with type = "select". Please use type = "radio" or type = "checkbox"')
@@ -111,11 +111,13 @@ check_question <- function(answer,
                  question_id,
                  '()" method="post">',
                  form,
-                 '<br><input type="submit" value="',
-                 button_label,
-                 '"></form><p id="result_',
-                 question_id,
-                 '"></p>'),
+                 '<br>',
+                 if(!is.null(answer)){
+                   c('<input type="submit" value="',
+                     button_label,
+                     '"></form><p id="result_',
+                     question_id,
+                     '"></p>')}),
                collapse = ""))
     if(type != "checkbox"){
       cat(

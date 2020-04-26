@@ -1,4 +1,7 @@
 checkdown 0.0.4 (13.04.2020)
+  - if argument "answer" in the "check_question()" function is NULL thene remove check button. Thnaks to @ManuelSpinola for the idea.
+
+checkdown 0.0.4 (13.04.2020)
   - add the "insert_images()" function for adding images to questions and hints
   - correct quote clash when using url links
   - add function "check_hints()" for multiple hints
