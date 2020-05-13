@@ -7,7 +7,7 @@
 
 G. Moroz
 
-## Instalation
+## Installation
 
 Get the stable version from CRAN:
 
@@ -84,7 +84,7 @@ check_question(NULL, options = c("apple", "banana", "bread"), type = "radio")
 
 ### 1.2 Give some hints with the `check_hint()` function
 
-Sometimes you now in advance what kind of mistakes will your students do. Some students are shy and don't like ask questions, so hints could partially solve  this problem. Again all you need is to create a following chunk with the chunck atribute `results='asis'` in your `rmarkdown` document:
+Sometimes you know in advance what kind of mistakes will your students do. Some students are shy and don't like asking questions, so hints could partially solve  this problem. Again all you need is to create a following chunk with the chunck atribute `results='asis'` in your `rmarkdown` document:
 
 ```{r, results="asis"}
 check_hint("You can use the rmarkdown package")
@@ -99,7 +99,7 @@ check_hint("You can use the rmarkdown package",
 It is possible to use Markdown inside messages:
 
 ```{r, results="asis"}
-check_hint("* You can use the `markdown` **inside** the [`chcekdown` package](https://agricolamz.github.io/checkdown/)",
+check_hint("* You can use `markdown` **inside** the [`chcekdown` package](https://agricolamz.github.io/checkdown/)",
            hint_title = "Click he`R`e")
 check_question(answer =  4, 
                wrong = "a**R**e you su**R**e", 
