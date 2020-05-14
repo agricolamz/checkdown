@@ -143,6 +143,8 @@ check_hint(paste("Here is our plot: <br>",
                  insert_images(tmp, image_width = "40%")))
 ```
 
+It looks like it is better to change font size, if you want to change the size of the picture.
+
 ## 3. Some important notes
 
 * It is possible to avoid code in the output `.html`. Just use the chunk argument `echo=FALSE`.

@@ -119,6 +119,8 @@ check_hints(hint_text = c("look into the hint 2", "look into the hint 1"),
             list_title = "list of hints")
 ```
 
+It looks like it is better to change font size, if you want to change the size of the picture.
+
 ## 2. Inserting images
 
 Sometimes it is nice to use images as a question. It also could be useful to insert images in hints. In order to do it you need to use `insert_images()` function, and enumerate the correct answer.

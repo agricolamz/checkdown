@@ -127,7 +127,7 @@ check_question(answer = 3,
 
 Arguments `image_width` and `image_height` also except vector of values in case you need different size for different pictures. It is also possible to create a picture during the session, save it and use in `checkdown` functions.
 
-```{r}
+```{r, message=FALSE}
 tmp <- tempfile(fileext = ".png")
 library(ggplot2)
 ggplot(data = mtcars, aes(mpg, disp)) + geom_point()
@@ -140,6 +140,8 @@ Let's use obtained picture in the hint (notice, how I used percantage in the `im
 check_hint(paste("Here is our plot: <br>", 
                  insert_images(tmp, image_width = "40%")))
 ```
+
+It looks like it is better to change font size, if you want to change the size of the picture. 
 
 ## 3. Some important notes
 
