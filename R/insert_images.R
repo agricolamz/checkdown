@@ -26,15 +26,15 @@ insert_images <- function(src,
                    image_height,
                    stringsAsFactors = FALSE)
   l <- lapply(seq_along(src), function(i){
-    paste0(c("<img src='",
+    paste0(c('<img src="',
              df$src[i],
-             "' alt = '",
+             '" alt = "',
              df$alt[i],
-             "' width = '",
+             '" width = "',
              df$image_width[i],
-             "' height = '",
+             '" height = "',
              df$image_height[i],
-             "'>"),
+             '">'),
            collapse = "")
   })
   unlist(l)
