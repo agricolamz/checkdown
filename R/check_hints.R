@@ -31,7 +31,7 @@ check_hints <- function(hint_text,
   if(knitr::is_html_output()){
     hint_title <- paste0(hint_title_prefix, hint_title, hint_title_suffix)
     df <- data.frame(hint_text, hint_title, stringsAsFactors = FALSE)
-    df$hint_id <- sample(2:1e5, nrow(df))
+    df$hint_id <- sample(1:1e5, nrow(df))
 
     df$hint_text <- unlist(lapply(seq_along(df$hint_text), function(i){
       x <- as.character(df$hint_text[i])
@@ -67,28 +67,30 @@ check_hints <- function(hint_text,
                     '"></p>',
                     collapse = "")
 
+    id <- sample(2e+05:1e5, 1)
+
     cat(paste0(c('<p id="hint_',
-                 1,
+                 id,
                  '", onclick="return show_hint_',
-                 1,
+                 id,
                  '()">',
                  list_title,
                  '</p><p id="result_',
-                 1,
+                 id,
                  '"></p>',
                  '<script> function show_hint_',
-                 1,
+                 id,
                  '() {',
                  'var x = document.getElementById("result_',
-                 1,
+                 id,
                  '").innerHTML;',
                  "if(!x){document.getElementById('result_",
-                 1,
+                 id,
                  "').innerHTML = '",
                  hints,
                  "';}",
                  'else {document.getElementById("result_',
-                 1,
+                 id,
                  '").innerHTML = "";}}',
                  paste0(
                  'function show_hint_',

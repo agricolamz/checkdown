@@ -7,7 +7,7 @@
 check_hint(
   hint_text,
   hint_title = "Click here to see/close the hint",
-  hint_id = sample(1:1e+05, 1)
+  hint_id = sample(1e+05:1, 1)
 )
 }
 \arguments{

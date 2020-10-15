@@ -21,8 +21,11 @@
 
 check_hint <- function(hint_text,
                        hint_title = "Click here to see/close the hint",
-                       hint_id = sample(1:1e5, 1)){
+                       hint_id = sample(1e5:1, 1)){
   if(knitr::is_html_output()){
+    if(grepl("\\.", hint_id)){
+      hint_id <- gsub("\\.", "_", hint_id)
+    }
     hint_text <- (markdown::markdownToHTML(text = hint_text,
                                            output = NULL,
                                            fragment.only = TRUE))
@@ -33,6 +36,7 @@ check_hint <- function(hint_text,
                                             fragment.only = TRUE))
     hint_title <- gsub("(<.?p>)|(\n)|(\\#)", "", hint_title)
 
+    print(hint_id)
     cat(paste0(c('<p id="hint_',
                  hint_id,
                  '", onclick="return show_hint_',

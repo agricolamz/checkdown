@@ -1,3 +1,6 @@
+checkdown 0.0.6 (16.10.2020)
+  - correct the "check_hints" problem.
+
 checkdown 0.0.5 (14.05.2020)
   - if argument "answer" in the "check_question()" function is NULL thene remove check button. Thnaks to @ManuelSpinola for the idea.
   - correct the "insert_images()" function
