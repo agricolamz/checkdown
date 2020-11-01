@@ -36,7 +36,6 @@ check_hint <- function(hint_text,
                                             fragment.only = TRUE))
     hint_title <- gsub("(<.?p>)|(\n)|(\\#)", "", hint_title)
 
-    print(hint_id)
     cat(paste0(c('<p id="hint_',
                  hint_id,
                  '", onclick="return show_hint_',

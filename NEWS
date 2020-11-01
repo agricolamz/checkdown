@@ -1,3 +1,6 @@
+checkdown 0.0.7 (01.11.2020)
+  - correct the "check_hint" problem.
+
 checkdown 0.0.6 (16.10.2020)
   - correct the "check_hints" problem.
 
