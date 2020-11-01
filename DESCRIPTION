@@ -1,7 +1,7 @@
 Package: checkdown
 Type: Package
 Title: Check-Fields and Check-Boxes  for 'rmarkdown'
-Version: 0.0.6
+Version: 0.0.7
 Depends: R (>= 3.5.0)
 Authors@R: c(person("George", "Moroz",
              role = c("aut", "cre"),
