@@ -35,31 +35,33 @@ library(checkdown)
 Imagine that we want to create a checkbox with the answer 4. All you need is to create a following chunk in your `rmarkdown` document:
 
 ```{r}
-check_question(answer =  4)
+check_question(answer = 4)
 ```
 
 It is possible to change wrong and right answer's messages using `wrong` and `right` arguments of the `check_question()` function. Let's create some more questions.
 
 Solve 3+3:
+
 ```{r}
-check_question(answer =  6, right = "correct", wrong = "not correct")
+check_question(answer = 6, right = "correct", wrong = "not correct")
 ```
 
 Type *la-la*:
+
 ```{r}
-check_question(answer =  "la-la")
+check_question(answer = "la-la")
 ```
 
 It is possible to use `placeholder` argument in order to show what kind of answer you expect:
 
 ```{r}
-check_question(answer =  "la-la", placeholder = "ta-ta-ta")
+check_question(answer = "la-la", placeholder = "ta-ta-ta")
 ```
 
-
 Number of answers is not limited:
+
 ```{r}
-check_question(answer =  1:5)
+check_question(answer = 1:5)
 ```
 
 It is also possible to create a list of answers for students to choose:
@@ -78,6 +80,7 @@ check_question("banana", options = c("apple", "banana", "bread"), type = "radio"
 ```
 
 You can shuffle answers using the `random_answer_order` argument:
+
 ```{r}
 check_question("banana", options = c("apple", "banana", "bread"), type = "radio", random_answer_order = TRUE)
 ```
@@ -90,7 +93,7 @@ check_question(NULL, options = c("apple", "banana", "bread"), type = "radio")
 
 ### 1.2 Give some hints with the `check_hint()` function
 
-Sometimes you know in advance what kind of mistakes will your students do. Some students are shy and don't like asking questions, so hints could partially solve  this problem. Again all you need is to create a following chunk with the chunck atribute `results='asis'` in your `rmarkdown` document:
+Sometimes you know in advance what kind of mistakes will your students do. Some students are shy and don't like asking questions, so hints could partially solve this problem. Again all you need is to create a following chunk with the chunck atribute `results='asis'` in your `rmarkdown` document:
 
 ```{r}
 check_hint("You can use the rmarkdown package")
@@ -109,6 +112,7 @@ By default you need to click on the hint in order to make it appear, but this be
 check_hint("You can use the rmarkdown package inside checkdown",
            hint_title = "🔎 Put mouse over here",
            type = "onmouseover")
+
 check_hint("You can use the rmarkdown package inside checkdown",
            hint_title = "🔎 Double click here",
            type = "ondblclick")
@@ -119,7 +123,8 @@ It is possible to use Markdown inside messages:
 ```{r}
 check_hint("- You can use `markdown` **inside** the [`chcekdown` package](https://agricolamz.github.io/checkdown/)",
            hint_title = "Click he`R`e")
-check_question(answer =  4, 
+
+check_question(answer = 4, 
                wrong = "a**R**e you su**R**e?", 
                right = "### `R`ight")
 ```
@@ -142,7 +147,7 @@ check_question(answer = 3,
                options = insert_images(c("windows.png", 
                                          "mac.png",
                                          "linux.png"), 
-                                         image_width = 30))
+                                       image_width = 30))
 ```
 
 Arguments `image_width` and `image_height` also except vector of values in case you need different size for different pictures. It is also possible to create a picture during the session, save it and use in `checkdown` functions.
@@ -171,5 +176,5 @@ It looks like it is better to change font size, if you want to change the size o
 
 ```{r}
 log(3/4)
-check_question(answer =  round(log(3/4), 6))
+check_question(answer = round(log(3/4), 6))
 ```
