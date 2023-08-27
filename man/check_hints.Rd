@@ -25,8 +25,6 @@ check_hints(
 \item{list_title}{unique identifier for each hint}
 
 \item{type}{character that describes behavior of the hints. Possible values are: \code{onclick}, \code{onmouseover}, \code{ondblclick}}
-
-\item{hint_id}{unique identifier for each hint}
 }
 \value{
 returns the html tags and javascript code
@@ -36,7 +34,7 @@ Create check-fields and check-boxes for 'rmarkdown'
 }
 \examples{
 
-# ```{r, results='asis', echo=FALSE}
+# ```{r, echo=FALSE}
 # check_hints(1:4)
 # ```
 

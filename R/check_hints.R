@@ -4,7 +4,6 @@
 #' @param hint_title hint title texts; can contain markdown
 #' @param hint_title_prefix string that added before each hint_title
 #' @param hint_title_suffix string that added after each hint_title
-#' @param hint_id unique identifier for each hint
 #' @param list_title unique identifier for each hint
 #' @param type character that describes behavior of the hints. Possible values are: \code{onclick}, \code{onmouseover}, \code{ondblclick}
 #'
