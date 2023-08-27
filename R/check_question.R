@@ -90,7 +90,7 @@ check_question <- function(answer,
         htmltools::tags$input(type = type,
                               name = glue::glue("answer_{q_id}"),
                               id = glue::glue("answer_{q_id}_{i}"),
-                              value = options[i]),
+                              value = ifelse(class(options[i]) == "list", i, options[i])),
         htmltools::tags$label(options[i]),
         if(alignment == "vertical"){htmltools::tags$br()})
     })
@@ -119,7 +119,9 @@ check_question <- function(answer,
 
   if(type != "checkbox"){
 
-    js_script <- glue::glue("<script>function validate_form_{q_id}() {{var x, text; var x = document.forms['form_{q_id}']['answer_{q_id}'].value;if (x == '{answer}'){{text = '{right}';}} else {{text = '{wrong}';}} document.getElementById('result_{q_id}').innerHTML = text; return false;}}</script>")
+    answer <- paste0("x == '", answer, "'", collapse = '|')
+
+    js_script <- glue::glue("<script>function validate_form_{q_id}() {{var x, text; var x = document.forms['form_{q_id}']['answer_{q_id}'].value;if ({answer}){{text = '{right}';}} else {{text = '{wrong}';}} document.getElementById('result_{q_id}').innerHTML = text; return false;}}</script>")
 
   } else {
 
