@@ -1,34 +1,39 @@
+checkdown 0.0.8 (26.08.2023)
+- rewrite package with `glue` and `htmltools`
+- add argument `type` to the `check_hint()` and `check_hints()` functions with the possible values `onclick`, `onmouseover` and `ondblclick`
+- add argument `placeholder` for the `check_question` with the `type` argument `text`
+
 checkdown 0.0.7 (01.11.2020)
-  - correct the "check_hint" problem.
+- correct the `check_hint` problem
 
 checkdown 0.0.6 (16.10.2020)
-  - correct the "check_hints" problem.
+- correct the `check_hints` problem
 
 checkdown 0.0.5 (14.05.2020)
-  - if argument "answer" in the "check_question()" function is NULL thene remove check button. Thnaks to @ManuelSpinola for the idea.
-  - correct the "insert_images()" function
+- if argument `answer` in the `check_question()` function is NULL thene remove check button. Thnaks to @ManuelSpinola for the idea
+- correct the `insert_images()` function
 
 checkdown 0.0.4 (13.04.2020)
-  - add the "insert_images()" function for adding images to questions and hints
-  - correct quote clash when using url links
-  - add function "check_hints()" for multiple hints
-  - rename the argument "click_text" of the "check_hint()" function into "hint_title"
+- add the `insert_images()` function for adding images to questions and hints
+- correct quote clash when using url links
+- add function `check_hints()` for multiple hints
+- rename the argument `click_text` of the `check_hint()` function into `hint_title`
 
 checkdown 0.0.3 (20.03.2020)
-  - add the "random_answer_order" argument to "check_question()"
-  - add type "checkbox" to "autocheck_question()" function.
-  - add the "alignment" argument to "check_question()"
-  - fix the problem with negative numbers
+- add the `random_answer_order` argument to `check_question()`
+- add type `checkbox` to `autocheck_question()` function
+- add the `alignment` argument to `check_question()`
+- fix the problem with negative numbers
 
 checkdown 0.0.2 (18.03.2020)
-  - add random value in question_id, so it is possible not to specify it all the time.
-  - add type "radio" to "autocheck_question()" function.
-  - add possibility to have multiple answers
-  - add argument "button_label" that controls the value that will be displayed on the button
-  - change alert() to just <p></p>, so user do not need to close alert window
-  - rename "autocheck_question()" to "check_question()"
-  - add the "check_hint()" function
-  - add markdown conversion inside of all messages
+- add random value in question_id, so it is possible not to specify it all the time
+- add type `radio` to `autocheck_question()` function
+- add possibility to have multiple answers
+- add argument `button_label` that controls the value that will be displayed on the button
+- change alert() to just <p></p>, so user do not need to close alert window
+- rename `autocheck_question()` to `check_question()`
+- add the `check_hint()` function
+- add markdown conversion inside of all messages
 
 checkdown 0.0.1 (02.03.2020)
-  - initial release.
+- initial release

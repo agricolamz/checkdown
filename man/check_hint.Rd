@@ -7,6 +7,7 @@
 check_hint(
   hint_text,
   hint_title = "Click here to see/close the hint",
+  type = c("onclick", "onmouseover", "ondblclick"),
   hint_id = sample(1e+05:1, 1)
 )
 }
@@ -15,18 +16,20 @@ check_hint(
 
 \item{hint_title}{click paragraph text; can contain markdown}
 
-\item{hint_id}{unique identidier of the question}
+\item{type}{character that describes behavior of the hint. Possible values are: \code{onclick}, \code{onmouseover}, \code{ondblclick}}
+
+\item{hint_id}{unique identifier of the question}
 }
 \value{
-returns the html and javascript code
+returns the html tags and javascript code
 }
 \description{
 Create check-fields and check-boxes for 'rmarkdown'
 }
 \examples{
 
-# ```{r, results='asis', echo=FALSE}
-# check_hint("You can use argument `asis`!")
+# ```{r, echo=FALSE}
+# check_hint("You can use argument `echo=FALSE`!")
 # ```
 
 }

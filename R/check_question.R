@@ -1,181 +1,143 @@
 #' Create check-fields and check-boxes for 'rmarkdown'
 #'
-#' @param question_id unique identidier of the question
+#' @param q_id unique identifier of the question
 #' @param answer correct answer (can be a double or a string). It is possible to put here a vector of several answers.
 #' @param right form reaction on right answer
 #' @param wrong form reaction on wrong answer
-#' @param alignment logical argument for options' alignment: vertical if \code{TRUE}, horizontal if \code{FALSE}
+#' @param alignment logical argument for options' alignment: \code{vertical} or \code{horizontal}
 #' @param options vector of values for the selection list type
 #' @param button_label character value that will be displayed on the button
+#' @param placeholder character that defines a short hint that describes the expected value of an input field. This works with the \code{text} input type only.
 #' @param random_answer_order logical argument that denotes whether answers should be shuffled
-#' @param type character that defines type of the list. Possible values: \code{select}, \code{radio}, \code{checkbox}
+#' @param type character that defines type of the list. Possible values: \code{text}, \code{select}, \code{radio}, \code{checkbox}
 #'
-#' @return returns the html and javascript code
+#' @return returns the html tags and javascript code
 #'
 #' @author George Moroz <agricolamz@gmail.com>
 #' @examples
 #'
-#' # ```{r, results='asis', echo=FALSE}
+#' # ```{r, echo=FALSE}
 #' # check_question(answer = 5)
 #' # ```
 #'
 #' @export
 #'
-#' @importFrom knitr is_html_output
 #' @importFrom markdown markdownToHTML
-#'
+#' @importFrom htmltools tags
+#' @importFrom htmltools tagList
+#' @importFrom glue glue
 
 check_question <- function(answer,
                            right = "Correct",
                            wrong = "I have a different answer",
                            options = NULL,
-                           type = "select",
-                           alignment = FALSE,
+                           type = c("text", "select", "radio", "checkbox"),
                            button_label = "check",
+                           alignment = c("vertical", "horizontal"),
+                           placeholder = "",
                            random_answer_order = FALSE,
-                           question_id = sample(1:1e5, 1)) {
+                           q_id = sample(1:1e5, 1)) {
 
-  if(knitr::is_html_output()){
-    if(grepl("\\.", question_id)){
-      question_id <- gsub("\\.", "_", question_id)
-    }
-    right <- (markdown::markdownToHTML(text = right,
-                                       output = NULL,
-                                       fragment.only = TRUE))
-    right <- gsub("(<.?p>)|(\n)|(\\#)", "", right)
-    wrong <- (markdown::markdownToHTML(text = wrong,
-                                       output = NULL,
-                                       fragment.only = TRUE))
-    wrong <- gsub("(<.?p>)|(\n)|(\\#)", "", wrong)
-    options <- if(random_answer_order){sample(options)} else {options}
-    options_value <- if(TRUE %in% grepl("^<img src=", options)){seq_along(options)} else {options}
-    alignment <- ifelse(alignment, " ", "<br>")
-    answer <- if(!is.null(answer)) as.character(answer)
+# polish arguments --------------------------------------------------------
 
-    if(TRUE %in% grepl("^<img src=", options) & type == "select"){
-      stop('It is imposible to use images with type = "select". Please use type = "radio" or type = "checkbox"')
-    }
+  type <- match.arg(type)
+  alignment <- match.arg(alignment)
 
-    if(is.null(options)){
-      form <- paste(c('<input type="text" name="answer_',
-                      question_id,
-                      '">'),
-                    collapse = "")
-    } else if(type == "select"){
-      form <- paste(c('<select name="answer_',
-                      question_id,
-                      '">',
-                      paste("<option>", options, "</option>"),
-                      "</select>"),
-                    collapse = "")
-    } else if(type == "radio"){
-      form <- paste0('<input type="radio" name="answer_',
-                     question_id,
-                     '" id="',
-                     question_id,
-                     '_',
-                     seq_along(options),
-                     '" value="',
-                     options_value,
-                     '"><label for="',
-                     seq_along(options),
-                     '">',
-                     options,
-                     '</label>',
-                     alignment,
-                     collapse = "")
-    } else if(type == "checkbox"){
-      form <- paste0('<input type="checkbox" id="answer_',
-                     question_id,
-                     '_',
-                     seq_along(options),
-                     '" value="',
-                     options_value,
-                     '"><label for="answer_',
-                     question_id,
-                     "_",
-                     seq_along(options),
-                     '">',
-                     options,
-                     '</label>',
-                     alignment,
-                     collapse = "")
-    } else {
-      stop("Possible values for the type variable: 'select', 'radio' or 'checkbox'")
-
-    }
-    form <- gsub(x = form, pattern = "<br>$", replacement = "")
-    cat(paste0(c('<form name="form_',
-                 question_id,
-                 '" onsubmit="return validate_form_',
-                 question_id,
-                 '()" method="post">',
-                 form,
-                 '<br>',
-                 if(!is.null(answer)){
-                   c('<input type="submit" value="',
-                     button_label,
-                     '"></form><p id="result_',
-                     question_id,
-                     '"></p>')}),
-               collapse = ""))
-    if(type != "checkbox"){
-      cat(
-        paste(
-          "<script>",
-          paste(
-            'function validate_form_',
-            question_id,
-            '() {var x, text; var x = document.forms["form_',
-            question_id,
-            '"]["answer_',
-            question_id,
-            '"].value;',
-            'if (',
-            paste0('x == "', answer, '"', collapse = '|'),
-            '){',
-            "text = '",
-            right,
-            "';",
-            '} else {',
-            "text = '",
-            wrong,
-            "';} document.getElementById('result_",
-            question_id,
-            "').innerHTML = text; return false;}",
-            sep = "",
-            collapse = "\n"),
-          "</script>",
-          collapse = "\n"))
-    } else {
-      cat(paste0(
-        '<script> ',
-        'function validate_form_',
-        question_id,
-        '() {',
-        'var text;',
-        paste0('var x',
-        seq_along(options),
-        ' = document.getElementById("',
-        'answer_',
-        question_id,
-        "_",
-        seq_along(options),
-        '");', collapse = ""),
-        'if (',
-        paste0('x',
-               seq_along(options),
-               '.checked == ',
-               tolower(options_value %in% answer),
-               collapse = "&"),
-        '){text = "',
-        right,
-        '";} else {text = "',
-        wrong,
-        '";} document.getElementById("result_',
-        question_id,
-        '").innerHTML = text; return false;}',
-        '</script>'))
-    }
+  if(grepl("\\.", q_id)){
+    q_id <- gsub("\\.", "_", q_id)
   }
+
+  right <- right |>
+    markdown::markdownToHTML(text = _,
+                             output = NULL,
+                             fragment.only = TRUE) |>
+    gsub("(<.?p>)|(\n)|(\\#)", "", x = _) |>
+    htmltools::HTML()
+
+  wrong <- wrong |>
+    markdown::markdownToHTML(text = _,
+                             output = NULL,
+                             fragment.only = TRUE) |>
+    gsub("(<.?p>)|(\n)|(\\#)", "", x = _) |>
+    htmltools::HTML()
+
+  placeholder <- as.character(placeholder[1])
+
+  options <- if(random_answer_order){sample(options)} else {options}
+
+  answer <- if(!is.null(answer)){answer |> as.character() |> unique()}
+
+# form part ---------------------------------------------------------------
+
+  if(type == "text" & is.null(options)){
+
+    UI_part <- htmltools::tags$input(type = "text",
+                                     placeholder = placeholder,
+                                     name = glue::glue("answer_{q_id}"))
+
+  } else if(type == "select" & !is.null(options)){
+
+    select_options <- lapply(options, function(i){
+      htmltools::tagList(htmltools::tags$option(i))})
+
+    UI_part <- htmltools::tags$select(name = glue::glue("answer_{q_id}"),
+                                      select_options)
+
+  } else if(type == "radio" & !is.null(options)){
+
+    UI_part <- lapply(seq_along(options), function(i){
+      htmltools::tagList(
+        htmltools::tags$input(type = type,
+                              name = glue::glue("answer_{q_id}"),
+                              id = glue::glue("answer_{q_id}_{i}"),
+                              value = options[i]),
+        htmltools::tags$label(options[i]),
+        if(alignment == "vertical"){htmltools::tags$br()})
+    })
+
+  } else if(type == "checkbox" & !is.null(options)){
+
+    UI_part <- lapply(seq_along(options), function(i){
+      htmltools::tagList(
+        htmltools::tags$input(type = type,
+                              id = glue::glue("answer_{q_id}_{i}"),
+                              value = options[i]),
+        htmltools::tags$label(options[i]),
+        if(alignment == "vertical"){htmltools::tags$br()})
+    })
+  }
+
+  question <- htmltools::tagList(
+    UI_part,
+    htmltools::tags$input(type = "submit", value = button_label),
+    htmltools::tags$div(id = glue::glue("result_{q_id}"))) |>
+    htmltools::tags$form(name = glue::glue("form_{q_id}"),
+                         onsubmit = glue::glue("return validate_form_{q_id}()"),
+                         method = "post")
+
+# javascript part ---------------------------------------------------------
+
+  if(type != "checkbox"){
+
+    js_script <- glue::glue("<script>function validate_form_{q_id}() {{var x, text; var x = document.forms['form_{q_id}']['answer_{q_id}'].value;if (x == '{answer}'){{text = '{right}';}} else {{text = '{wrong}';}} document.getElementById('result_{q_id}').innerHTML = text; return false;}}</script>")
+
+  } else {
+
+    vars <- lapply(seq_along(options), function(i){
+      glue::glue("var x{i} = document.getElementById('answer_{q_id}_{i}');")
+    }) |>
+      unlist() |>
+      paste0(collapse = " ")
+
+    condition <- lapply(seq_along(options), function(i){
+      condition_value <- tolower(options[i] %in% answer)
+      glue::glue("x{i}.checked == {condition_value}")
+    }) |>
+      unlist() |>
+      paste0(collapse = "&")
+
+    js_script <- glue::glue("<script>function validate_form_{q_id}() {{var text; {vars} if ({condition}){{text = '{right}';}} else {{text = '{wrong}';}} document.getElementById('result_{q_id}').innerHTML = text; return false;}}</script>")
+  }
+
+  htmltools::tagList(question, htmltools::HTML(js_script))
 }

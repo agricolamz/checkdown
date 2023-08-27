@@ -10,7 +10,7 @@ check_hints(
   hint_title_prefix = "",
   hint_title_suffix = "",
   list_title = "Click here to see/close the list of hints",
-  hint_id
+  type = c("onclick", "onmouseover", "ondblclick")
 )
 }
 \arguments{
@@ -18,16 +18,18 @@ check_hints(
 
 \item{hint_title}{hint title texts; can contain markdown}
 
-\item{hint_title_prefix}{string that added to each hint_title to the left side}
+\item{hint_title_prefix}{string that added before each hint_title}
 
-\item{hint_title_suffix}{string that added to each hint_title to the right side}
+\item{hint_title_suffix}{string that added after each hint_title}
 
-\item{list_title}{unique identidier for each hint}
+\item{list_title}{unique identifier for each hint}
 
-\item{hint_id}{unique identidier for each hint}
+\item{type}{character that describes behavior of the hints. Possible values are: \code{onclick}, \code{onmouseover}, \code{ondblclick}}
+
+\item{hint_id}{unique identifier for each hint}
 }
 \value{
-returns the html and javascript code
+returns the html tags and javascript code
 }
 \description{
 Create check-fields and check-boxes for 'rmarkdown'

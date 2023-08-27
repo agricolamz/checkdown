@@ -9,11 +9,12 @@ check_question(
   right = "Correct",
   wrong = "I have a different answer",
   options = NULL,
-  type = "select",
-  alignment = FALSE,
+  type = c("text", "select", "radio", "checkbox"),
   button_label = "check",
+  alignment = c("vertical", "horizontal"),
+  placeholder = "",
   random_answer_order = FALSE,
-  question_id = sample(1:1e+05, 1)
+  q_id = sample(1:1e+05, 1)
 )
 }
 \arguments{
@@ -25,25 +26,27 @@ check_question(
 
 \item{options}{vector of values for the selection list type}
 
-\item{type}{character that defines type of the list. Possible values: \code{select}, \code{radio}, \code{checkbox}}
-
-\item{alignment}{logical argument for options' alignment: vertical if \code{TRUE}, horizontal if \code{FALSE}}
+\item{type}{character that defines type of the list. Possible values: \code{text}, \code{select}, \code{radio}, \code{checkbox}}
 
 \item{button_label}{character value that will be displayed on the button}
 
+\item{alignment}{logical argument for options' alignment: \code{vertical} or \code{horizontal}}
+
+\item{placeholder}{character that defines a short hint that describes the expected value of an input field. This works with the \code{text} input type only.}
+
 \item{random_answer_order}{logical argument that denotes whether answers should be shuffled}
 
-\item{question_id}{unique identidier of the question}
+\item{q_id}{unique identifier of the question}
 }
 \value{
-returns the html and javascript code
+returns the html tags and javascript code
 }
 \description{
 Create check-fields and check-boxes for 'rmarkdown'
 }
 \examples{
 
-# ```{r, results='asis', echo=FALSE}
+# ```{r, echo=FALSE}
 # check_question(answer = 5)
 # ```
 

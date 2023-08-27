@@ -2,113 +2,58 @@
 #'
 #' @param hint_text hint paragraph texts; can contain markdown
 #' @param hint_title hint title texts; can contain markdown
-#' @param hint_title_prefix string that added to each hint_title to the left side
-#' @param hint_title_suffix string that added to each hint_title to the right side
-#' @param hint_id unique identidier for each hint
-#' @param list_title unique identidier for each hint
+#' @param hint_title_prefix string that added before each hint_title
+#' @param hint_title_suffix string that added after each hint_title
+#' @param hint_id unique identifier for each hint
+#' @param list_title unique identifier for each hint
+#' @param type character that describes behavior of the hints. Possible values are: \code{onclick}, \code{onmouseover}, \code{ondblclick}
 #'
-#' @return returns the html and javascript code
+#' @return returns the html tags and javascript code
 #'
 #' @author George Moroz <agricolamz@gmail.com>
 #' @examples
 #'
-#' # ```{r, results='asis', echo=FALSE}
+#' # ```{r, echo=FALSE}
 #' # check_hints(1:4)
 #' # ```
 #'
 #' @export
 #'
-#' @importFrom knitr is_html_output
 #' @importFrom markdown markdownToHTML
-#'
+#' @importFrom htmltools tags
+#' @importFrom htmltools tagList
+#' @importFrom glue glue
 
 check_hints <- function(hint_text,
                         hint_title = "Click here to see/close the hint",
                         hint_title_prefix = "",
                         hint_title_suffix = "",
                         list_title = "Click here to see/close the list of hints",
-                        hint_id){
-  if(knitr::is_html_output()){
-    hint_title <- paste0(hint_title_prefix, hint_title, hint_title_suffix)
-    df <- data.frame(hint_text, hint_title, stringsAsFactors = FALSE)
-    df$hint_id <- sample(1:1e5, nrow(df))
+                        type = c("onclick", "onmouseover", "ondblclick")){
 
-    df$hint_text <- unlist(lapply(seq_along(df$hint_text), function(i){
-      x <- as.character(df$hint_text[i])
-      x <- (markdown::markdownToHTML(text = x,
-                                     output = NULL,
-                                     fragment.only = TRUE))
-      x <- gsub("(<.?p>)|(\n)|(\\#)", "", x)
-      x
-    }))
+  type <- match.arg(type)
 
-    df$hint_title <- unlist(lapply(seq_along(df$hint_title), function(i){
-      x <- as.character(df$hint_title[i])
-      x <- (markdown::markdownToHTML(text = x,
-                                     output = NULL,
-                                     fragment.only = TRUE))
-      x <- gsub("(<.?p>)|(\n)|(\\#)", "", x)
-      x
-    }))
+  hint_title <- paste0(hint_title_prefix, hint_title, hint_title_suffix)
+  df <- data.frame(hint_text, hint_title, stringsAsFactors = FALSE)
 
-    list_title <- (markdown::markdownToHTML(text = list_title,
-                                            output = NULL,
-                                            fragment.only = TRUE))
-    list_title <- gsub("(<.?p>)|(\n)|(\\#)", "", list_title)
+  result <- lapply(seq_along(df$hint_text), function(i){
+    checkdown::check_hint(hint_text = df$hint_text[i],
+                          hint_title = df$hint_title[i],
+                          type = type)
+  })
 
-    hints <- paste0('<p id="hint_',
-                    df$hint_id,
-                    '", onclick="return show_hint_',
-                    df$hint_id,
-                    '()">',
-                    df$hint_title,
-                    '</p><p id="result_',
-                    df$hint_id,
-                    '"></p>',
-                    collapse = "")
+  list_title <- list_title |>
+    markdown::markdownToHTML(text = _,
+                             output = NULL,
+                             fragment.only = TRUE) |>
+    gsub("(<.?p>)|(\n)|(\\#)", "", x = _) |>
+    htmltools::HTML()
 
-    id <- sample(2e+05:1e5, 1)
 
-    cat(paste0(c('<p id="hint_',
-                 id,
-                 '", onclick="return show_hint_',
-                 id,
-                 '()">',
-                 list_title,
-                 '</p><p id="result_',
-                 id,
-                 '"></p>',
-                 '<script> function show_hint_',
-                 id,
-                 '() {',
-                 'var x = document.getElementById("result_',
-                 id,
-                 '").innerHTML;',
-                 "if(!x){document.getElementById('result_",
-                 id,
-                 "').innerHTML = '",
-                 hints,
-                 "';}",
-                 'else {document.getElementById("result_',
-                 id,
-                 '").innerHTML = "";}}',
-                 paste0(
-                 'function show_hint_',
-                 df$hint_id,
-                 '() {',
-                 'var x = document.getElementById("result_',
-                 df$hint_id,
-                 '").innerHTML;',
-                 "if(!x){document.getElementById('result_",
-                 df$hint_id,
-                 "').innerHTML = '",
-                 df$hint_text,
-                 "';}",
-                 'else {document.getElementById("result_',
-                 df$hint_id,
-                 '").innerHTML = "";}}',
-                 collapse = ""),
-                 '</script>'),
-               collapse = ""))
-  }
+  htmltools::tagList(
+    htmltools::tags$summary(list_title),
+    result) |>
+  htmltools::tags$details()
+
 }
+
