@@ -9,11 +9,14 @@ check_question(
   right = "Correct",
   wrong = "I have a different answer",
   options = NULL,
-  type = c("text", "select", "radio", "checkbox"),
+  type = c("text", "select", "radio", "checkbox", "in_order"),
   button_label = "check",
   alignment = c("vertical", "horizontal"),
   placeholder = "",
   random_answer_order = FALSE,
+  width_of_in_order = paste0(round(1/length(answer) * 85), "\%"),
+  height_of_in_order = "60px",
+  style_of_in_order = "padding:5px;border: 1px solid #aaaaaa; display: inline-block;",
   q_id = sample(1:1e+05, 1)
 )
 }
@@ -26,7 +29,7 @@ check_question(
 
 \item{options}{vector of values for the selection list type}
 
-\item{type}{character that defines type of the list. Possible values: \code{text}, \code{select}, \code{radio}, \code{checkbox}}
+\item{type}{character that defines type of the list. Possible values: \code{text}, \code{select}, \code{radio}, \code{checkbox}, \code{in_order}}
 
 \item{button_label}{character value that will be displayed on the button}
 
@@ -34,7 +37,13 @@ check_question(
 
 \item{placeholder}{character that defines a short hint that describes the expected value of an input field. This works with the \code{text} input type only.}
 
-\item{random_answer_order}{logical argument that denotes whether answers should be shuffled}
+\item{random_answer_order}{logical argument that denotes whether answers should be shuffled, when the \code{type} value is \code{select}, \code{radio} or \code{checkbox}}
+
+\item{width_of_in_order}{character with some values for width of the boxes, when the \code{type} value is \code{in_order}. Possible values: "30px", "20\%"}
+
+\item{height_of_in_order}{character with some values for height of the boxes, when the \code{type} value is \code{in_order}. Possible values: "30px", "20\%"}
+
+\item{style_of_in_order}{character that contains CSS style for the \code{div} boxes, when the \code{type} value is \code{in_order}}
 
 \item{q_id}{unique identifier of the question}
 }

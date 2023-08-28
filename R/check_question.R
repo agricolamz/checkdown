@@ -9,6 +9,8 @@
 #' @param placeholder character that defines a short hint that describes the expected value of an input field. This works with the \code{text} input type only.
 #' @param alignment logical argument for options' alignment: \code{vertical} or \code{horizontal}
 #' @param random_answer_order logical argument that denotes whether answers should be shuffled, when the \code{type} value is \code{select}, \code{radio} or \code{checkbox}
+#' @param width_of_in_order character with some values for width of the boxes, when the \code{type} value is \code{in_order}. Possible values: "30px", "20\%"
+#' @param height_of_in_order character with some values for height of the boxes, when the \code{type} value is \code{in_order}. Possible values: "30px", "20\%"
 #' @param style_of_in_order character that contains CSS style for the \code{div} boxes, when the \code{type} value is \code{in_order}
 #' @param q_id unique identifier of the question
 #'
@@ -25,6 +27,7 @@
 #'
 #' @importFrom markdown markdownToHTML
 #' @importFrom htmltools tags
+#' @importFrom htmltools div
 #' @importFrom htmltools tagList
 #' @importFrom glue glue
 
@@ -112,10 +115,10 @@ check_question <- function(answer,
   } else if(type == "in_order" & is.null(options)){
 
     boxes <- lapply(seq_along(answer), function(i){
-      htmltools::tagList(htmltools::div(id = glue::glue("field_{q_id}_{i}"),
-                                        ondrop = "drop(event)",
-                                        ondragover="allowDrop(event)",
-                                        style = glue::glue("width:{width_of_in_order};height:{height_of_in_order};", style_of_in_order)))})
+      htmltools::tagList(htmltools::span(id = glue::glue("field_{q_id}_{i}"),
+                                         ondrop = "drop(event)",
+                                         ondragover="allowDrop(event)",
+                                         style = glue::glue("width:{width_of_in_order};height:{height_of_in_order};", style_of_in_order)))})
 
     answers <- lapply(seq_along(answer), function(i){
       htmltools::tagList(htmltools::div(id = glue::glue("answer_{q_id}_{i}"),
@@ -123,7 +126,7 @@ check_question <- function(answer,
                                         ondragstart="drag(event)",
                                         answer[i]))})
 
-    UI_part <- htmltools::tagList(boxes,
+    UI_part <- htmltools::tagList(htmltools::div(boxes),
                                   htmltools::tags$br(),
                                   sample(answers))
   }
