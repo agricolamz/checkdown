@@ -1,15 +1,16 @@
 #' Create check-fields and check-boxes for 'rmarkdown'
 #'
-#' @param q_id unique identifier of the question
 #' @param answer correct answer (can be a double or a string). It is possible to put here a vector of several answers.
 #' @param right form reaction on right answer
 #' @param wrong form reaction on wrong answer
-#' @param alignment logical argument for options' alignment: \code{vertical} or \code{horizontal}
 #' @param options vector of values for the selection list type
+#' @param type character that defines type of the list. Possible values: \code{text}, \code{select}, \code{radio}, \code{checkbox}, \code{in_order}
 #' @param button_label character value that will be displayed on the button
 #' @param placeholder character that defines a short hint that describes the expected value of an input field. This works with the \code{text} input type only.
-#' @param random_answer_order logical argument that denotes whether answers should be shuffled
-#' @param type character that defines type of the list. Possible values: \code{text}, \code{select}, \code{radio}, \code{checkbox}
+#' @param alignment logical argument for options' alignment: \code{vertical} or \code{horizontal}
+#' @param random_answer_order logical argument that denotes whether answers should be shuffled, when the \code{type} value is \code{select}, \code{radio} or \code{checkbox}
+#' @param style_of_in_order character that contains CSS style for the \code{div} boxes, when the \code{type} value is \code{in_order}
+#' @param q_id unique identifier of the question
 #'
 #' @return returns the html tags and javascript code
 #'
@@ -31,11 +32,14 @@ check_question <- function(answer,
                            right = "Correct",
                            wrong = "I have a different answer",
                            options = NULL,
-                           type = c("text", "select", "radio", "checkbox"),
+                           type = c("text", "select", "radio", "checkbox", "in_order"),
                            button_label = "check",
                            alignment = c("vertical", "horizontal"),
                            placeholder = "",
                            random_answer_order = FALSE,
+                           width_of_in_order = paste0(round(1/length(answer)*85), "%"),
+                           height_of_in_order = "60px",
+                           style_of_in_order = "padding:5px;border: 1px solid #aaaaaa; display: inline-block;",
                            q_id = sample(1:1e5, 1)) {
 
 # polish arguments --------------------------------------------------------
@@ -105,6 +109,23 @@ check_question <- function(answer,
         htmltools::tags$label(options[i]),
         if(alignment == "vertical"){htmltools::tags$br()})
     })
+  } else if(type == "in_order" & is.null(options)){
+
+    boxes <- lapply(seq_along(answer), function(i){
+      htmltools::tagList(htmltools::div(id = glue::glue("field_{q_id}_{i}"),
+                                        ondrop = "drop(event)",
+                                        ondragover="allowDrop(event)",
+                                        style = glue::glue("width:{width_of_in_order};height:{height_of_in_order};", style_of_in_order)))})
+
+    answers <- lapply(seq_along(answer), function(i){
+      htmltools::tagList(htmltools::div(id = glue::glue("answer_{q_id}_{i}"),
+                                        draggable = "true",
+                                        ondragstart="drag(event)",
+                                        answer[i]))})
+
+    UI_part <- htmltools::tagList(boxes,
+                                  htmltools::tags$br(),
+                                  sample(answers))
   }
 
   question <- htmltools::tagList(
@@ -117,13 +138,13 @@ check_question <- function(answer,
 
 # javascript part ---------------------------------------------------------
 
-  if(type != "checkbox"){
+  if(!(type %in% c("checkbox", "in_order"))){
 
     answer <- paste0("x == '", answer, "'", collapse = '|')
 
     js_script <- glue::glue("<script>function validate_form_{q_id}() {{var x, text; var x = document.forms['form_{q_id}']['answer_{q_id}'].value;if ({answer}){{text = '{right}';}} else {{text = '{wrong}';}} document.getElementById('result_{q_id}').innerHTML = text; return false;}}</script>")
 
-  } else {
+  } else if(type == "checkbox"){
 
     vars <- lapply(seq_along(options), function(i){
       glue::glue("var x{i} = document.getElementById('answer_{q_id}_{i}');")
@@ -139,6 +160,29 @@ check_question <- function(answer,
       paste0(collapse = "&")
 
     js_script <- glue::glue("<script>function validate_form_{q_id}() {{var text; {vars} if ({condition}){{text = '{right}';}} else {{text = '{wrong}';}} document.getElementById('result_{q_id}').innerHTML = text; return false;}}</script>")
+  } else if(type == "in_order"){
+
+    fields <- lapply(seq_along(answer), function(i){
+      glue::glue("var f{i} = document.getElementById('field_{q_id}_{i}');")
+    }) |>
+      unlist() |>
+      paste0(collapse = "")
+
+    answers <- lapply(seq_along(answer), function(i){
+      glue::glue("var a{i} = document.getElementById('answer_{q_id}_{i}');")
+    }) |>
+      unlist() |>
+      paste0(collapse = "")
+
+    condition <- lapply(seq_along(answer), function(i){
+      glue::glue("f{i}.contains(a{i})")
+    }) |>
+      unlist() |>
+      paste0(collapse = "&")
+
+    js_check_question <- glue::glue("function validate_form_{q_id}() {{var text;{fields}{answers} if ({condition}){{text = '{right}';}} else {{text = '{wrong}';}} document.getElementById('result_{q_id}').innerHTML = text; return false;}}")
+    js_drag_and_drop <- "function allowDrop(ev) {ev.preventDefault();} function drag(ev) {ev.dataTransfer.setData('Text', ev.target.id);} function drop(ev) {let data = ev.dataTransfer.getData('Text');ev.target.appendChild(document.getElementById(data));ev.preventDefault();}"
+    js_script <- glue::glue("<script>{js_check_question}{js_drag_and_drop}</script>")
   }
 
   htmltools::tagList(question, htmltools::HTML(js_script))

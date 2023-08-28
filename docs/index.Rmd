@@ -91,6 +91,14 @@ If you don't want to give the possibility of automatically check your question, 
 check_question(NULL, options = c("apple", "banana", "bread"), type = "radio")
 ```
 
+There is also an experimental type of question `in_order`, wheere students need to drag and drop words in the correct order:
+
+```{r}
+check_question(answer = c("What", "do", "you", "think?"), type = "in_order")
+```
+
+In this type you need to provide correct order to the `answer` argument and options will be shuffled automatically.
+
 ### 1.2 Give some hints with the `check_hint()` function
 
 Sometimes you know in advance what kind of mistakes will your students do. Some students are shy and don't like asking questions, so hints could partially solve this problem. Again all you need is to create a following chunk with the chunck atribute `results='asis'` in your `rmarkdown` document:
