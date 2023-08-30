@@ -114,21 +114,26 @@ check_question <- function(answer,
     })
   } else if(type == "in_order" & is.null(options)){
 
-    boxes <- lapply(seq_along(answer), function(i){
-      htmltools::tagList(htmltools::span(id = glue::glue("field_{q_id}_{i}"),
-                                         ondrop = "drop(event)",
-                                         ondragover="allowDrop(event)",
-                                         style = glue::glue("width:{width_of_in_order};height:{height_of_in_order};", style_of_in_order)))})
+    answer_sample <- sample(seq_along(answer))
 
-    answers <- lapply(seq_along(answer), function(i){
-      htmltools::tagList(htmltools::div(id = glue::glue("answer_{q_id}_{i}"),
-                                        draggable = "true",
-                                        ondragstart="drag(event)",
-                                        answer[i]))})
+    answers <- lapply(answer_sample, function(i){
 
-    UI_part <- htmltools::tagList(htmltools::div(boxes),
-                                  htmltools::tags$br(),
-                                  sample(answers))
+      if(which(i == answer_sample) != length(answer_sample)){
+        htmltools::tagList(htmltools::tags$td(id = glue::glue("answer_{q_id}_{i}"),
+                                              style = "padding:5px; border:1px solid #ccc;",
+                                              answer[i]),
+                           htmltools::tags$button(onclick = "swapElements(this);", "\u21ff") |>
+                             htmltools::tags$td(style = "padding:5px"))
+      } else {
+        htmltools::tags$td(id = glue::glue("answer_{q_id}_{i}"),
+                                              style = "padding:5px; border:1px solid #ccc;",
+                                              answer[i])
+      }
+      })
+
+    UI_part <- answers |>
+      htmltools::tags$tr(id = glue::glue("task_{q_id}")) |>
+      htmltools::tags$table()
   }
 
   question <- htmltools::tagList(
@@ -165,27 +170,16 @@ check_question <- function(answer,
     js_script <- glue::glue("<script>function validate_form_{q_id}() {{var text; {vars} if ({condition}){{text = '{right}';}} else {{text = '{wrong}';}} document.getElementById('result_{q_id}').innerHTML = text; return false;}}</script>")
   } else if(type == "in_order"){
 
-    fields <- lapply(seq_along(answer), function(i){
-      glue::glue("var f{i} = document.getElementById('field_{q_id}_{i}');")
-    }) |>
-      unlist() |>
-      paste0(collapse = "")
-
-    answers <- lapply(seq_along(answer), function(i){
-      glue::glue("var a{i} = document.getElementById('answer_{q_id}_{i}');")
-    }) |>
-      unlist() |>
-      paste0(collapse = "")
-
     condition <- lapply(seq_along(answer), function(i){
-      glue::glue("f{i}.contains(a{i})")
+      j = (i-1)*2
+      glue::glue("ch[{j}].id == 'answer_{q_id}_{i}'")
     }) |>
       unlist() |>
       paste0(collapse = "&")
 
-    js_check_question <- glue::glue("function validate_form_{q_id}() {{var text;{fields}{answers} if ({condition}){{text = '{right}';}} else {{text = '{wrong}';}} document.getElementById('result_{q_id}').innerHTML = text; return false;}}")
-    js_drag_and_drop <- "function allowDrop(ev) {ev.preventDefault();} function drag(ev) {ev.dataTransfer.setData('Text', ev.target.id);} function drop(ev) {let data = ev.dataTransfer.getData('Text');ev.target.appendChild(document.getElementById(data));ev.preventDefault();}"
-    js_script <- glue::glue("<script>{js_check_question}{js_drag_and_drop}</script>")
+    js_check_question <- glue::glue("function validate_form_{q_id}() {{var text;var ch = document.getElementById('task_{q_id}').children; if({condition}){{text = '{right}';}} else {{text = '{wrong}';}} document.getElementById('result_{q_id}').innerHTML = text; return false;}}")
+    js_swap <- "function swapElements(element) {const parent = element.parentNode; const afterNode = parent.nextElementSibling; const beforeNode = parent.previousElementSibling; parent.insertAdjacentElement('beforebegin', afterNode); parent.insertAdjacentElement('afterend', beforeNode);}"
+    js_script <- glue::glue("<script>{js_check_question}{js_swap}</script>")
   }
 
   htmltools::tagList(question, htmltools::HTML(js_script))
