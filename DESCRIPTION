@@ -1,13 +1,17 @@
 Package: checkdown
 Type: Package
 Title: Check-Fields and Check-Boxes  for 'rmarkdown'
-Version: 0.0.8
+Version: 0.0.9
 Depends: R (>= 3.5.0)
 Authors@R: c(person("George", "Moroz",
              role = c("aut", "cre"),
              email = "agricolamz@gmail.com",
              comment = c(ORCID="0000-0003-1990-6083")))
-Description: Creates auto checking check-fields and check-boxes for 'rmarkdown' html. It could be used in class, when teacher share materials and tasks, so student can solve some problems and check themselves. In contrast with the 'learnr' package the 'checkdown' package works without 'shiny'.
+Description: Creates auto-grading check-fields and check-boxes for 'rmarkdown' 
+    or 'quarto' html. It could be used in class, when teacher share materials 
+    and tasks, so student can solve some problems and check themselves. In 
+    contrast to the 'learnr' package the 'checkdown' package works serverlessly 
+    without 'shiny'.
 Imports: markdown, htmltools, glue
 URL: https://agricolamz.github.io/checkdown/
 BugReports: https://github.com/agricolamz/checkdown/issues

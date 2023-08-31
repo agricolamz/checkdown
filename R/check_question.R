@@ -114,7 +114,15 @@ check_question <- function(answer,
     })
   } else if(type == "in_order" & is.null(options)){
 
-    answer_sample <- sample(seq_along(answer))
+    if(length(answer) < 2){
+      stop("For tasks of type 'in_order' answer vector's length should be greater then 1")
+    }
+
+    answer_sample <- seq_along(answer)
+
+    while(identical(answer_sample, seq_along(answer))){
+      answer_sample <- sample(seq_along(answer))
+    }
 
     answers <- lapply(answer_sample, function(i){
 
@@ -122,7 +130,9 @@ check_question <- function(answer,
         htmltools::tagList(htmltools::tags$td(id = glue::glue("answer_{q_id}_{i}"),
                                               style = "padding:5px; border:1px solid #ccc;",
                                               answer[i]),
-                           htmltools::tags$button(onclick = "swapElements(this);", "\u21ff") |>
+                           htmltools::tags$button(type="button",
+                                                  onclick = "swapElements(this);",
+                                                  "\u21ff") |>
                              htmltools::tags$td(style = "padding:5px"))
       } else {
         htmltools::tags$td(id = glue::glue("answer_{q_id}_{i}"),

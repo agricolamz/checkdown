@@ -1,3 +1,6 @@
+checkdown 0.0.9 (...08.2023)
+- add type `in_order` to the `check_question()`
+
 checkdown 0.0.8 (26.08.2023)
 - rewrite package with `glue` and `htmltools`
 - add argument `type` to the `check_hint()` and `check_hints()` functions with the possible values `onclick`, `onmouseover` and `ondblclick`
