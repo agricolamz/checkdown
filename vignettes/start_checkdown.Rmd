@@ -118,18 +118,18 @@ Of course it is possible to change the message of the part that should be clicke
 
 ```{r}
 check_hint("You can use the rmarkdown package inside checkdown",
-           hint_title = "🔎 CLICK HERE")
+           hint_title = "CLICK HERE")
 ```
 
 By default you need to click on the hint in order to make it appear, but this behaviour can be changed with the `type` argument:
 
 ```{r}
 check_hint("You can use the rmarkdown package inside checkdown",
-           hint_title = "🔎 Put mouse over here",
+           hint_title = "Put mouse over here",
            type = "onmouseover")
 
 check_hint("You can use the rmarkdown package inside checkdown",
-           hint_title = "🔎 Double click here",
+           hint_title = "Double click here",
            type = "ondblclick")
 ```
 
