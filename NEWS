@@ -1,5 +1,6 @@
 checkdown 0.0.9 (...08.2023)
 - add type `in_order` to the `check_question()`
+- fix bug with image insertion in `check_hint()` (thanks to Olga Alieva for bringing it up)
 
 checkdown 0.0.8 (26.08.2023)
 - rewrite package with `glue` and `htmltools`
