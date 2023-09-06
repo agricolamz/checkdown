@@ -35,9 +35,9 @@ check_question <- function(answer,
                            right = "Correct",
                            wrong = "I have a different answer",
                            options = NULL,
-                           type = c("text", "select", "radio", "checkbox", "in_order"),
+                           type = NULL,
                            button_label = "check",
-                           alignment = c("vertical", "horizontal"),
+                           alignment = NULL,
                            placeholder = "",
                            random_answer_order = FALSE,
                            width_of_in_order = paste0(round(1/length(answer)*85), "%"),
@@ -47,8 +47,17 @@ check_question <- function(answer,
 
 # polish arguments --------------------------------------------------------
 
-  type <- match.arg(type)
-  alignment <- match.arg(alignment)
+  if(is.null(options)){
+    type <- match.arg(type, c("text", "in_order"))
+  } else {
+    type <- match.arg(type, c("select", "radio", "checkbox"))
+  }
+
+  if(type %in% c("radio", "checkbox")){
+    alignment <- match.arg(alignment, c("vertical", "horizontal"))
+  } else if(type == "in_order"){
+    alignment <- match.arg(alignment, c("horizontal", "vertical"))
+  }
 
   if(grepl("\\.", q_id)){
     q_id <- gsub("\\.", "_", q_id)
