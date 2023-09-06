@@ -28,18 +28,17 @@ check_hint <- function(hint_text,
 
   type <- match.arg(type)
 
-    if(grepl("\\.", hint_id)){
+  if(grepl("\\.", hint_id)){
       hint_id <- gsub("\\.", "_", hint_id)
-    }
+  }
 
-  if("list" %in% class(hint_text)){
-    hint_text <- hint_text |>
+  hint_text <- hint_text |>
       markdown::markdownToHTML(text = _,
                                output = NULL,
                                fragment.only = TRUE) |>
       gsub("(<.?p>)|(\n)|(\\#)", "", x = _) |>
       htmltools::HTML()
-  }
+
     hint_title <- hint_title |>
       as.character() |>
       markdown::markdownToHTML(text = _,

@@ -146,6 +146,13 @@ check_hints(hint_text = c("look into the hint 2", "look into the hint 1"),
             list_title = "list of hints")
 ```
 
+It is worth mentioning that `\n` will be removed from `hint_text` and `hint_title` arguments, so in case you want to have a new line use html tag `<br>`. 
+
+```{r}
+check_hint(hint_text = "this<br>is<br>a<br>multiline<br>sentence")
+```
+
+
 ## 2. Inserting images
 
 Sometimes it is nice to use images as a question. It also could be useful to insert images in hints. In order to do it you need to use `insert_images()` function, and enumerate the correct answer.
@@ -160,6 +167,15 @@ check_question(answer = 3,
 ```
 
 Arguments `image_width` and `image_height` also except vector of values in case you need different size for different pictures. 
+
+In case you want to use pictures within hints, it is better to use markdown markup for it:
+
+```{r}
+check_hint("Here is a map: <br>
+![](https://upload.wikimedia.org/wikipedia/commons/f/f7/EU-Greece_%28orthographic_projection%29.svg){width=10%}")
+```
+
+
 
 ## 3. Some important notes
 
