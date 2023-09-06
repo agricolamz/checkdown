@@ -133,26 +133,51 @@ check_question <- function(answer,
       answer_sample <- sample(seq_along(answer))
     }
 
-    answers <- lapply(answer_sample, function(i){
+    if(alignment == "horizontal"){
+      answers <- lapply(answer_sample, function(i){
+        if(which(i == answer_sample) != length(answer_sample)){
+          htmltools::tagList(htmltools::tags$td(id = glue::glue("answer_{q_id}_{i}"),
+                                                style = "padding:5px; border:1px solid #ccc;",
+                                                answer[i]),
+                             htmltools::tags$button(type="button",
+                                                    onclick = "swapElementsH(this);",
+                                                    "\u21c6") |>
+                               htmltools::tags$td(style = "padding:5px"))
+        } else {
+          htmltools::tags$td(id = glue::glue("answer_{q_id}_{i}"),
+                             style = "padding:5px; border:1px solid #ccc;",
+                             answer[i])
+        }})
 
-      if(which(i == answer_sample) != length(answer_sample)){
-        htmltools::tagList(htmltools::tags$td(id = glue::glue("answer_{q_id}_{i}"),
-                                              style = "padding:5px; border:1px solid #ccc;",
-                                              answer[i]),
-                           htmltools::tags$button(type="button",
-                                                  onclick = "swapElements(this);",
-                                                  "\u21ff") |>
-                             htmltools::tags$td(style = "padding:5px"))
-      } else {
-        htmltools::tags$td(id = glue::glue("answer_{q_id}_{i}"),
-                                              style = "padding:5px; border:1px solid #ccc;",
-                                              answer[i])
+      UI_part <- answers |>
+        htmltools::tags$tr(id = glue::glue("task_{q_id}")) |>
+        htmltools::tags$table()
+
+      } else if(alignment == "vertical"){
+        answers <- lapply(answer_sample, function(i){
+        if(which(i == answer_sample) != length(answer_sample)){
+          htmltools::tagList(htmltools::tags$td(id = glue::glue("answer_{q_id}_{i}"),
+                                                style = "padding:5px; border:1px solid #ccc;",
+                                                answer[i]) |>
+                               htmltools::tags$tr(),
+                             htmltools::tags$button(type="button",
+                                                    onclick = "swapElementsV(this);",
+                                                    "\u21c5") |>
+                               htmltools::tags$td(style = "padding:5px") |>
+                               htmltools::tags$tr())
+        } else {
+          htmltools::tags$td(id = glue::glue("answer_{q_id}_{i}"),
+                             style = "padding:5px; border:1px solid #ccc;",
+                             answer[i]) |>
+            htmltools::tags$tr()
+        }})
+
+        UI_part <- answers |>
+          htmltools::tags$tbody(id = glue::glue("task_{q_id}")) |>
+          htmltools::tags$table()
       }
-      })
 
-    UI_part <- answers |>
-      htmltools::tags$tr(id = glue::glue("task_{q_id}")) |>
-      htmltools::tags$table()
+
   }
 
   question <- htmltools::tagList(
@@ -188,16 +213,32 @@ check_question <- function(answer,
 
     js_script <- glue::glue("<script>function validate_form_{q_id}() {{var text; {vars} if ({condition}){{text = '{right}';}} else {{text = '{wrong}';}} document.getElementById('result_{q_id}').innerHTML = text; return false;}}</script>")
   } else if(type == "in_order"){
+    if(alignment == "horizontal"){
+      condition <- lapply(seq_along(answer), function(i){
+        j = (i-1)*2
+        glue::glue("ch[{j}].id == 'answer_{q_id}_{i}'")
+      }) |>
+        unlist() |>
+        paste0(collapse = "&")
 
-    condition <- lapply(seq_along(answer), function(i){
-      j = (i-1)*2
-      glue::glue("ch[{j}].id == 'answer_{q_id}_{i}'")
-    }) |>
-      unlist() |>
-      paste0(collapse = "&")
+      js_check_question <- glue::glue("function validate_form_{q_id}() {{var text;var ch = document.getElementById('task_{q_id}').children; if({condition}){{text = '{right}';}} else {{text = '{wrong}';}} document.getElementById('result_{q_id}').innerHTML = text; return false;}}")
 
-    js_check_question <- glue::glue("function validate_form_{q_id}() {{var text;var ch = document.getElementById('task_{q_id}').children; if({condition}){{text = '{right}';}} else {{text = '{wrong}';}} document.getElementById('result_{q_id}').innerHTML = text; return false;}}")
-    js_swap <- "function swapElements(element) {const parent = element.parentNode; const afterNode = parent.nextElementSibling; const beforeNode = parent.previousElementSibling; parent.insertAdjacentElement('beforebegin', afterNode); parent.insertAdjacentElement('afterend', beforeNode);}"
+      js_swap <- "function swapElementsH(element) {const parent = element.parentNode; const afterNode = parent.nextElementSibling; const beforeNode = parent.previousElementSibling; parent.insertAdjacentElement('beforebegin', afterNode); parent.insertAdjacentElement('afterend', beforeNode);}"
+
+    } else if(alignment == "vertical"){
+      condition <- lapply(seq_along(answer), function(i){
+        j = (i-1)*2
+        glue::glue("ch[{j}].children[0].id == 'answer_{q_id}_{i}'")
+      }) |>
+        unlist() |>
+        paste0(collapse = "&")
+
+      js_check_question <- glue::glue("function validate_form_{q_id}() {{var text;var ch = document.getElementById('task_{q_id}').children; if({condition}){{text = '{right}';}} else {{text = '{wrong}';}} document.getElementById('result_{q_id}').innerHTML = text; return false;}}")
+
+      js_swap <- "function swapElementsV(element) {const parent = element.parentNode.parentNode; const afterNode = parent.nextElementSibling; const beforeNode = parent.previousElementSibling; parent.insertAdjacentElement('beforebegin', afterNode); parent.insertAdjacentElement('afterend', beforeNode);}"
+
+    }
+
     js_script <- glue::glue("<script>{js_check_question}{js_swap}</script>")
   }
 

@@ -393,169 +393,221 @@ function</h3>
 need is to create a following chunk in your <code>rmarkdown</code>
 document:</p>
 <pre class="r"><code>check_question(answer = 4)</code></pre>
-<form name="form_70438" onsubmit="return validate_form_70438()" method="post">
-<input type="text" placeholder name="answer_70438"></input>
+<form name="form_89783" onsubmit="return validate_form_89783()" method="post">
+<input type="text" placeholder name="answer_89783"></input>
 <input type="submit" value="check"></input>
-<div id="result_70438"></div>
+<div id="result_89783"></div>
 </form>
-<script>function validate_form_70438() {var x, text; var x = document.forms['form_70438']['answer_70438'].value;if (x == '4'){text = 'Correct';} else {text = 'I have a different answer';} document.getElementById('result_70438').innerHTML = text; return false;}</script>
+<script>function validate_form_89783() {var x, text; var x = document.forms['form_89783']['answer_89783'].value;if (x == '4'){text = 'Correct';} else {text = 'I have a different answer';} document.getElementById('result_89783').innerHTML = text; return false;}</script>
 <p>It is possible to change wrong and right answer’s messages using
 <code>wrong</code> and <code>right</code> arguments of the
 <code>check_question()</code> function. Let’s create some more
 questions.</p>
 <p>Solve 3+3:</p>
 <pre class="r"><code>check_question(answer = 6, right = &quot;correct&quot;, wrong = &quot;not correct&quot;)</code></pre>
-<form name="form_93632" onsubmit="return validate_form_93632()" method="post">
-<input type="text" placeholder name="answer_93632"></input>
+<form name="form_10543" onsubmit="return validate_form_10543()" method="post">
+<input type="text" placeholder name="answer_10543"></input>
 <input type="submit" value="check"></input>
-<div id="result_93632"></div>
+<div id="result_10543"></div>
 </form>
-<script>function validate_form_93632() {var x, text; var x = document.forms['form_93632']['answer_93632'].value;if (x == '6'){text = 'correct';} else {text = 'not correct';} document.getElementById('result_93632').innerHTML = text; return false;}</script>
+<script>function validate_form_10543() {var x, text; var x = document.forms['form_10543']['answer_10543'].value;if (x == '6'){text = 'correct';} else {text = 'not correct';} document.getElementById('result_10543').innerHTML = text; return false;}</script>
 <p>Type <em>la-la</em>:</p>
 <pre class="r"><code>check_question(answer = &quot;la-la&quot;)</code></pre>
-<form name="form_77540" onsubmit="return validate_form_77540()" method="post">
-<input type="text" placeholder name="answer_77540"></input>
+<form name="form_62896" onsubmit="return validate_form_62896()" method="post">
+<input type="text" placeholder name="answer_62896"></input>
 <input type="submit" value="check"></input>
-<div id="result_77540"></div>
+<div id="result_62896"></div>
 </form>
-<script>function validate_form_77540() {var x, text; var x = document.forms['form_77540']['answer_77540'].value;if (x == 'la-la'){text = 'Correct';} else {text = 'I have a different answer';} document.getElementById('result_77540').innerHTML = text; return false;}</script>
+<script>function validate_form_62896() {var x, text; var x = document.forms['form_62896']['answer_62896'].value;if (x == 'la-la'){text = 'Correct';} else {text = 'I have a different answer';} document.getElementById('result_62896').innerHTML = text; return false;}</script>
 <p>It is possible to use <code>placeholder</code> argument in order to
 show what kind of answer you expect:</p>
 <pre class="r"><code>check_question(answer = &quot;la-la&quot;, placeholder = &quot;ta-ta-ta&quot;)</code></pre>
-<form name="form_39147" onsubmit="return validate_form_39147()" method="post">
-<input type="text" placeholder="ta-ta-ta" name="answer_39147"></input>
+<form name="form_42286" onsubmit="return validate_form_42286()" method="post">
+<input type="text" placeholder="ta-ta-ta" name="answer_42286"></input>
 <input type="submit" value="check"></input>
-<div id="result_39147"></div>
+<div id="result_42286"></div>
 </form>
-<script>function validate_form_39147() {var x, text; var x = document.forms['form_39147']['answer_39147'].value;if (x == 'la-la'){text = 'Correct';} else {text = 'I have a different answer';} document.getElementById('result_39147').innerHTML = text; return false;}</script>
+<script>function validate_form_42286() {var x, text; var x = document.forms['form_42286']['answer_42286'].value;if (x == 'la-la'){text = 'Correct';} else {text = 'I have a different answer';} document.getElementById('result_42286').innerHTML = text; return false;}</script>
 <p>Number of answers is not limited:</p>
 <pre class="r"><code>check_question(answer = 1:5)</code></pre>
-<form name="form_26229" onsubmit="return validate_form_26229()" method="post">
-<input type="text" placeholder name="answer_26229"></input>
+<form name="form_6410" onsubmit="return validate_form_6410()" method="post">
+<input type="text" placeholder name="answer_6410"></input>
 <input type="submit" value="check"></input>
-<div id="result_26229"></div>
+<div id="result_6410"></div>
 </form>
-<script>function validate_form_26229() {var x, text; var x = document.forms['form_26229']['answer_26229'].value;if (x == '1'|x == '2'|x == '3'|x == '4'|x == '5'){text = 'Correct';} else {text = 'I have a different answer';} document.getElementById('result_26229').innerHTML = text; return false;}</script>
+<script>function validate_form_6410() {var x, text; var x = document.forms['form_6410']['answer_6410'].value;if (x == '1'|x == '2'|x == '3'|x == '4'|x == '5'){text = 'Correct';} else {text = 'I have a different answer';} document.getElementById('result_6410').innerHTML = text; return false;}</script>
 <p>It is also possible to create a list of answers for students to
 choose:</p>
 <pre class="r"><code>check_question(&quot;banana&quot;, options = c(&quot;apple&quot;, &quot;banana&quot;, &quot;bread&quot;), type = &quot;select&quot;)</code></pre>
-<form name="form_27360" onsubmit="return validate_form_27360()" method="post">
-<select name="answer_27360">
+<form name="form_46818" onsubmit="return validate_form_46818()" method="post">
+<select name="answer_46818">
 <option>apple</option>
 <option>banana</option>
 <option>bread</option>
 </select>
 <input type="submit" value="check"></input>
-<div id="result_27360"></div>
+<div id="result_46818"></div>
 </form>
-<script>function validate_form_27360() {var x, text; var x = document.forms['form_27360']['answer_27360'].value;if (x == 'banana'){text = 'Correct';} else {text = 'I have a different answer';} document.getElementById('result_27360').innerHTML = text; return false;}</script>
+<script>function validate_form_46818() {var x, text; var x = document.forms['form_46818']['answer_46818'].value;if (x == 'banana'){text = 'Correct';} else {text = 'I have a different answer';} document.getElementById('result_46818').innerHTML = text; return false;}</script>
 <pre class="r"><code>check_question(&quot;banana&quot;, options = c(&quot;apple&quot;, &quot;banana&quot;, &quot;bread&quot;), type = &quot;radio&quot;)</code></pre>
-<form name="form_39857" onsubmit="return validate_form_39857()" method="post">
-<input type="radio" name="answer_39857" id="answer_39857_1" value="apple"></input>
+<form name="form_42173" onsubmit="return validate_form_42173()" method="post">
+<input type="radio" name="answer_42173" id="answer_42173_1" value="apple"></input>
 <label>apple</label>
 <br />
-<input type="radio" name="answer_39857" id="answer_39857_2" value="banana"></input>
+<input type="radio" name="answer_42173" id="answer_42173_2" value="banana"></input>
 <label>banana</label>
 <br />
-<input type="radio" name="answer_39857" id="answer_39857_3" value="bread"></input>
+<input type="radio" name="answer_42173" id="answer_42173_3" value="bread"></input>
 <label>bread</label>
 <br />
 <input type="submit" value="check"></input>
-<div id="result_39857"></div>
+<div id="result_42173"></div>
 </form>
-<script>function validate_form_39857() {var x, text; var x = document.forms['form_39857']['answer_39857'].value;if (x == 'banana'){text = 'Correct';} else {text = 'I have a different answer';} document.getElementById('result_39857').innerHTML = text; return false;}</script>
+<script>function validate_form_42173() {var x, text; var x = document.forms['form_42173']['answer_42173'].value;if (x == 'banana'){text = 'Correct';} else {text = 'I have a different answer';} document.getElementById('result_42173').innerHTML = text; return false;}</script>
 <pre class="r"><code>check_question(c(&quot;banana&quot;, &quot;apple&quot;), options = c(&quot;apple&quot;, &quot;banana&quot;, &quot;bread&quot;), type = &quot;checkbox&quot;)</code></pre>
-<form name="form_2419" onsubmit="return validate_form_2419()" method="post">
-<input type="checkbox" id="answer_2419_1" value="apple"></input>
+<form name="form_57982" onsubmit="return validate_form_57982()" method="post">
+<input type="checkbox" id="answer_57982_1" value="apple"></input>
 <label>apple</label>
 <br />
-<input type="checkbox" id="answer_2419_2" value="banana"></input>
+<input type="checkbox" id="answer_57982_2" value="banana"></input>
 <label>banana</label>
 <br />
-<input type="checkbox" id="answer_2419_3" value="bread"></input>
+<input type="checkbox" id="answer_57982_3" value="bread"></input>
 <label>bread</label>
 <br />
 <input type="submit" value="check"></input>
-<div id="result_2419"></div>
+<div id="result_57982"></div>
 </form>
-<script>function validate_form_2419() {var text; var x1 = document.getElementById('answer_2419_1'); var x2 = document.getElementById('answer_2419_2'); var x3 = document.getElementById('answer_2419_3'); if (x1.checked == true&x2.checked == true&x3.checked == false){text = 'Correct';} else {text = 'I have a different answer';} document.getElementById('result_2419').innerHTML = text; return false;}</script>
+<script>function validate_form_57982() {var text; var x1 = document.getElementById('answer_57982_1'); var x2 = document.getElementById('answer_57982_2'); var x3 = document.getElementById('answer_57982_3'); if (x1.checked == true&x2.checked == true&x3.checked == false){text = 'Correct';} else {text = 'I have a different answer';} document.getElementById('result_57982').innerHTML = text; return false;}</script>
 <p>If the list of possible answers is small, it is possible to align
 them in one line using <code>alignment</code> argument:</p>
 <pre class="r"><code>check_question(&quot;banana&quot;, options = c(&quot;apple&quot;, &quot;banana&quot;, &quot;bread&quot;), type = &quot;radio&quot;, alignment = &quot;horizontal&quot;)</code></pre>
-<form name="form_3969" onsubmit="return validate_form_3969()" method="post">
-<input type="radio" name="answer_3969" id="answer_3969_1" value="apple"></input>
+<form name="form_47381" onsubmit="return validate_form_47381()" method="post">
+<input type="radio" name="answer_47381" id="answer_47381_1" value="apple"></input>
 <label>apple</label>
-<input type="radio" name="answer_3969" id="answer_3969_2" value="banana"></input>
+<input type="radio" name="answer_47381" id="answer_47381_2" value="banana"></input>
 <label>banana</label>
-<input type="radio" name="answer_3969" id="answer_3969_3" value="bread"></input>
+<input type="radio" name="answer_47381" id="answer_47381_3" value="bread"></input>
 <label>bread</label>
 <input type="submit" value="check"></input>
-<div id="result_3969"></div>
+<div id="result_47381"></div>
 </form>
-<script>function validate_form_3969() {var x, text; var x = document.forms['form_3969']['answer_3969'].value;if (x == 'banana'){text = 'Correct';} else {text = 'I have a different answer';} document.getElementById('result_3969').innerHTML = text; return false;}</script>
+<script>function validate_form_47381() {var x, text; var x = document.forms['form_47381']['answer_47381'].value;if (x == 'banana'){text = 'Correct';} else {text = 'I have a different answer';} document.getElementById('result_47381').innerHTML = text; return false;}</script>
 <p>You can shuffle answers using the <code>random_answer_order</code>
 argument:</p>
 <pre class="r"><code>check_question(&quot;banana&quot;, options = c(&quot;apple&quot;, &quot;banana&quot;, &quot;bread&quot;), type = &quot;radio&quot;, random_answer_order = TRUE)</code></pre>
-<form name="form_60072" onsubmit="return validate_form_60072()" method="post">
-<input type="radio" name="answer_60072" id="answer_60072_1" value="bread"></input>
-<label>bread</label>
-<br />
-<input type="radio" name="answer_60072" id="answer_60072_2" value="banana"></input>
-<label>banana</label>
-<br />
-<input type="radio" name="answer_60072" id="answer_60072_3" value="apple"></input>
+<form name="form_30138" onsubmit="return validate_form_30138()" method="post">
+<input type="radio" name="answer_30138" id="answer_30138_1" value="apple"></input>
 <label>apple</label>
 <br />
+<input type="radio" name="answer_30138" id="answer_30138_2" value="bread"></input>
+<label>bread</label>
+<br />
+<input type="radio" name="answer_30138" id="answer_30138_3" value="banana"></input>
+<label>banana</label>
+<br />
 <input type="submit" value="check"></input>
-<div id="result_60072"></div>
+<div id="result_30138"></div>
 </form>
-<script>function validate_form_60072() {var x, text; var x = document.forms['form_60072']['answer_60072'].value;if (x == 'banana'){text = 'Correct';} else {text = 'I have a different answer';} document.getElementById('result_60072').innerHTML = text; return false;}</script>
+<script>function validate_form_30138() {var x, text; var x = document.forms['form_30138']['answer_30138'].value;if (x == 'banana'){text = 'Correct';} else {text = 'I have a different answer';} document.getElementById('result_30138').innerHTML = text; return false;}</script>
 <p>If you don’t want to give the possibility of automatically check your
 question, just put <code>NULL</code> in the <code>answer</code>
 argument:</p>
 <pre class="r"><code>check_question(NULL, options = c(&quot;apple&quot;, &quot;banana&quot;, &quot;bread&quot;), type = &quot;radio&quot;)</code></pre>
-<form name="form_52917" onsubmit="return validate_form_52917()" method="post">
-<input type="radio" name="answer_52917" id="answer_52917_1" value="apple"></input>
+<form name="form_19751" onsubmit="return validate_form_19751()" method="post">
+<input type="radio" name="answer_19751" id="answer_19751_1" value="apple"></input>
 <label>apple</label>
 <br />
-<input type="radio" name="answer_52917" id="answer_52917_2" value="banana"></input>
+<input type="radio" name="answer_19751" id="answer_19751_2" value="banana"></input>
 <label>banana</label>
 <br />
-<input type="radio" name="answer_52917" id="answer_52917_3" value="bread"></input>
+<input type="radio" name="answer_19751" id="answer_19751_3" value="bread"></input>
 <label>bread</label>
 <br />
 <input type="submit" value="check"></input>
-<div id="result_52917"></div>
+<div id="result_19751"></div>
 </form>
-<script>function validate_form_52917() {var x, text; var x = document.forms['form_52917']['answer_52917'].value;if (x == ''){text = 'Correct';} else {text = 'I have a different answer';} document.getElementById('result_52917').innerHTML = text; return false;}</script>
+<script>function validate_form_19751() {var x, text; var x = document.forms['form_19751']['answer_19751'].value;if (x == ''){text = 'Correct';} else {text = 'I have a different answer';} document.getElementById('result_19751').innerHTML = text; return false;}</script>
 <p>There is also an experimental type of question <code>in_order</code>,
 wheere students need to drag and drop words in the correct order:</p>
 <pre class="r"><code>check_question(answer = c(&quot;What&quot;, &quot;do&quot;, &quot;you&quot;, &quot;think?&quot;), type = &quot;in_order&quot;)</code></pre>
-<form name="form_20384" onsubmit="return validate_form_20384()" method="post">
+<form name="form_32938" onsubmit="return validate_form_32938()" method="post">
 <table>
-<tr id="task_20384">
-<td id="answer_20384_2" style="padding:5px; border:1px solid #ccc;">do</td>
+<tr id="task_32938">
+<td id="answer_32938_2" style="padding:5px; border:1px solid #ccc;">do</td>
 <td style="padding:5px">
-<button type="button" onclick="swapElements(this);">⇿</button>
+<button type="button" onclick="swapElementsH(this);">⇆</button>
 </td>
-<td id="answer_20384_3" style="padding:5px; border:1px solid #ccc;">you</td>
+<td id="answer_32938_3" style="padding:5px; border:1px solid #ccc;">you</td>
 <td style="padding:5px">
-<button type="button" onclick="swapElements(this);">⇿</button>
+<button type="button" onclick="swapElementsH(this);">⇆</button>
 </td>
-<td id="answer_20384_1" style="padding:5px; border:1px solid #ccc;">What</td>
+<td id="answer_32938_4" style="padding:5px; border:1px solid #ccc;">think?</td>
 <td style="padding:5px">
-<button type="button" onclick="swapElements(this);">⇿</button>
+<button type="button" onclick="swapElementsH(this);">⇆</button>
 </td>
-<td id="answer_20384_4" style="padding:5px; border:1px solid #ccc;">think?</td>
+<td id="answer_32938_1" style="padding:5px; border:1px solid #ccc;">What</td>
 </tr>
 </table>
 <input type="submit" value="check"></input>
-<div id="result_20384"></div>
+<div id="result_32938"></div>
 </form>
-<script>function validate_form_20384() {var text;var ch = document.getElementById('task_20384').children; if(ch[0].id == 'answer_20384_1'&ch[2].id == 'answer_20384_2'&ch[4].id == 'answer_20384_3'&ch[6].id == 'answer_20384_4'){text = 'Correct';} else {text = 'I have a different answer';} document.getElementById('result_20384').innerHTML = text; return false;}function swapElements(element) {const parent = element.parentNode; const afterNode = parent.nextElementSibling; const beforeNode = parent.previousElementSibling; parent.insertAdjacentElement('beforebegin', afterNode); parent.insertAdjacentElement('afterend', beforeNode);}</script>
+<script>function validate_form_32938() {var text;var ch = document.getElementById('task_32938').children; if(ch[0].id == 'answer_32938_1'&ch[2].id == 'answer_32938_2'&ch[4].id == 'answer_32938_3'&ch[6].id == 'answer_32938_4'){text = 'Correct';} else {text = 'I have a different answer';} document.getElementById('result_32938').innerHTML = text; return false;}function swapElementsH(element) {const parent = element.parentNode; const afterNode = parent.nextElementSibling; const beforeNode = parent.previousElementSibling; parent.insertAdjacentElement('beforebegin', afterNode); parent.insertAdjacentElement('afterend', beforeNode);}</script>
 <p>In this type you need to provide correct order to the
 <code>answer</code> argument and options will be shuffled
 automatically.</p>
+<p>In case answers are long, it is possible to use vertical
+<code>alignment</code>:</p>
+<pre class="r"><code>check_question(c(&quot;heat the water&quot;, 
+                 &quot;place a tea bag into the cup&quot;,
+                 &quot;pour the hot water over the tea bags&quot;,
+                 &quot;steep the tea bag into cup&quot;,
+                 &quot;remove the tea bags&quot;), 
+               type = &quot;in_order&quot;, alignment = &quot;vertical&quot;)</code></pre>
+<form name="form_74268" onsubmit="return validate_form_74268()" method="post">
+<table>
+<tbody id="task_74268">
+<tr>
+<td id="answer_74268_3" style="padding:5px; border:1px solid #ccc;">pour the hot water over the tea bags</td>
+</tr>
+<tr>
+<td style="padding:5px">
+<button type="button" onclick="swapElementsV(this);">⇅</button>
+</td>
+</tr>
+<tr>
+<td id="answer_74268_2" style="padding:5px; border:1px solid #ccc;">place a tea bag into the cup</td>
+</tr>
+<tr>
+<td style="padding:5px">
+<button type="button" onclick="swapElementsV(this);">⇅</button>
+</td>
+</tr>
+<tr>
+<td id="answer_74268_1" style="padding:5px; border:1px solid #ccc;">heat the water</td>
+</tr>
+<tr>
+<td style="padding:5px">
+<button type="button" onclick="swapElementsV(this);">⇅</button>
+</td>
+</tr>
+<tr>
+<td id="answer_74268_5" style="padding:5px; border:1px solid #ccc;">remove the tea bags</td>
+</tr>
+<tr>
+<td style="padding:5px">
+<button type="button" onclick="swapElementsV(this);">⇅</button>
+</td>
+</tr>
+<tr>
+<td id="answer_74268_4" style="padding:5px; border:1px solid #ccc;">steep the tea bag into cup</td>
+</tr>
+</tbody>
+</table>
+<input type="submit" value="check"></input>
+<div id="result_74268"></div>
+</form>
+<script>function validate_form_74268() {var text;var ch = document.getElementById('task_74268').children; if(ch[0].children[0].id == 'answer_74268_1'&ch[2].children[0].id == 'answer_74268_2'&ch[4].children[0].id == 'answer_74268_3'&ch[6].children[0].id == 'answer_74268_4'&ch[8].children[0].id == 'answer_74268_5'){text = 'Correct';} else {text = 'I have a different answer';} document.getElementById('result_74268').innerHTML = text; return false;}function swapElementsV(element) {const parent = element.parentNode.parentNode; const afterNode = parent.nextElementSibling; const beforeNode = parent.previousElementSibling; parent.insertAdjacentElement('beforebegin', afterNode); parent.insertAdjacentElement('afterend', beforeNode);}</script>
 </div>
 <div id="give-some-hints-with-the-check_hint-function" class="section level3">
 <h3>1.2 Give some hints with the <code>check_hint()</code> function</h3>
@@ -565,66 +617,66 @@ hints could partially solve this problem. Again all you need is to
 create a following chunk with the chunck atribute
 <code>results=&#39;asis&#39;</code> in your <code>rmarkdown</code> document:</p>
 <pre class="r"><code>check_hint(&quot;You can use the rmarkdown package&quot;)</code></pre>
-<div id="hint_45641" onclick="return show_hint_45641()">Click here to see/close the hint</div>
-<div id="result_45641" onclick="return show_hint_45641()"></div>
-<script>function show_hint_45641(){var x = document.getElementById('result_45641').innerHTML; if(!x){document.getElementById('result_45641').innerHTML = 'You can use the rmarkdown package';} else {document.getElementById('result_45641').innerHTML = '';}}</script>
+<div id="hint_9780" onclick="return show_hint_9780()">Click here to see/close the hint</div>
+<div id="result_9780" onclick="return show_hint_9780()"></div>
+<script>function show_hint_9780(){var x = document.getElementById('result_9780').innerHTML; if(!x){document.getElementById('result_9780').innerHTML = 'You can use the rmarkdown package';} else {document.getElementById('result_9780').innerHTML = '';}}</script>
 <p>Of course it is possible to change the message of the part that
 should be clicked, just use the <code>hint_title</code> argument:</p>
 <pre class="r"><code>check_hint(&quot;You can use the rmarkdown package inside checkdown&quot;,
            hint_title = &quot;🔎 CLICK HERE&quot;)</code></pre>
-<div id="hint_98713" onclick="return show_hint_98713()">🔎 CLICK HERE</div>
-<div id="result_98713" onclick="return show_hint_98713()"></div>
-<script>function show_hint_98713(){var x = document.getElementById('result_98713').innerHTML; if(!x){document.getElementById('result_98713').innerHTML = 'You can use the rmarkdown package inside checkdown';} else {document.getElementById('result_98713').innerHTML = '';}}</script>
+<div id="hint_52033" onclick="return show_hint_52033()">🔎 CLICK HERE</div>
+<div id="result_52033" onclick="return show_hint_52033()"></div>
+<script>function show_hint_52033(){var x = document.getElementById('result_52033').innerHTML; if(!x){document.getElementById('result_52033').innerHTML = 'You can use the rmarkdown package inside checkdown';} else {document.getElementById('result_52033').innerHTML = '';}}</script>
 <p>By default you need to click on the hint in order to make it appear,
 but this behaviour can be changed with the <code>type</code>
 argument:</p>
 <pre class="r"><code>check_hint(&quot;You can use the rmarkdown package inside checkdown&quot;,
            hint_title = &quot;🔎 Put mouse over here&quot;,
            type = &quot;onmouseover&quot;)</code></pre>
-<div id="hint_13321" onmouseover="return show_hint_13321()">🔎 Put mouse over here</div>
-<div id="result_13321" onmouseover="return show_hint_13321()"></div>
-<script>function show_hint_13321(){var x = document.getElementById('result_13321').innerHTML; if(!x){document.getElementById('result_13321').innerHTML = 'You can use the rmarkdown package inside checkdown';} else {document.getElementById('result_13321').innerHTML = '';}}</script>
+<div id="hint_78731" onmouseover="return show_hint_78731()">🔎 Put mouse over here</div>
+<div id="result_78731" onmouseover="return show_hint_78731()"></div>
+<script>function show_hint_78731(){var x = document.getElementById('result_78731').innerHTML; if(!x){document.getElementById('result_78731').innerHTML = 'You can use the rmarkdown package inside checkdown';} else {document.getElementById('result_78731').innerHTML = '';}}</script>
 <pre class="r"><code>check_hint(&quot;You can use the rmarkdown package inside checkdown&quot;,
            hint_title = &quot;🔎 Double click here&quot;,
            type = &quot;ondblclick&quot;)</code></pre>
-<div id="hint_22829" ondblclick="return show_hint_22829()">🔎 Double click here</div>
-<div id="result_22829" ondblclick="return show_hint_22829()"></div>
-<script>function show_hint_22829(){var x = document.getElementById('result_22829').innerHTML; if(!x){document.getElementById('result_22829').innerHTML = 'You can use the rmarkdown package inside checkdown';} else {document.getElementById('result_22829').innerHTML = '';}}</script>
+<div id="hint_97967" ondblclick="return show_hint_97967()">🔎 Double click here</div>
+<div id="result_97967" ondblclick="return show_hint_97967()"></div>
+<script>function show_hint_97967(){var x = document.getElementById('result_97967').innerHTML; if(!x){document.getElementById('result_97967').innerHTML = 'You can use the rmarkdown package inside checkdown';} else {document.getElementById('result_97967').innerHTML = '';}}</script>
 <p>It is possible to use Markdown inside messages:</p>
 <pre class="r"><code>check_hint(&quot;- You can use `markdown` **inside** the [`chcekdown` package](https://agricolamz.github.io/checkdown/)&quot;,
            hint_title = &quot;Click he`R`e&quot;)</code></pre>
-<div id="hint_22034" onclick="return show_hint_22034()">Click he<code>R</code>e</div>
-<div id="result_22034" onclick="return show_hint_22034()"></div>
-<script>function show_hint_22034(){var x = document.getElementById('result_22034').innerHTML; if(!x){document.getElementById('result_22034').innerHTML = '<ul><li>You can use <code>markdown</code> <strong>inside</strong> the <a href="https://agricolamz.github.io/checkdown/"><code>chcekdown</code> package</a></li></ul>';} else {document.getElementById('result_22034').innerHTML = '';}}</script>
+<div id="hint_2482" onclick="return show_hint_2482()">Click he<code>R</code>e</div>
+<div id="result_2482" onclick="return show_hint_2482()"></div>
+<script>function show_hint_2482(){var x = document.getElementById('result_2482').innerHTML; if(!x){document.getElementById('result_2482').innerHTML = '<ul><li>You can use <code>markdown</code> <strong>inside</strong> the <a href="https://agricolamz.github.io/checkdown/"><code>chcekdown</code> package</a></li></ul>';} else {document.getElementById('result_2482').innerHTML = '';}}</script>
 <pre class="r"><code>check_question(answer = 4, 
                wrong = &quot;a**R**e you su**R**e?&quot;, 
                right = &quot;### `R`ight&quot;)</code></pre>
-<form name="form_20661" onsubmit="return validate_form_20661()" method="post">
-<input type="text" placeholder name="answer_20661"></input>
+<form name="form_29654" onsubmit="return validate_form_29654()" method="post">
+<input type="text" placeholder name="answer_29654"></input>
 <input type="submit" value="check"></input>
-<div id="result_20661"></div>
+<div id="result_29654"></div>
 </form>
-<script>function validate_form_20661() {var x, text; var x = document.forms['form_20661']['answer_20661'].value;if (x == '4'){text = '<h3 id="right"><code>R</code>ight</h3>';} else {text = 'a<strong>R</strong>e you su<strong>R</strong>e?';} document.getElementById('result_20661').innerHTML = text; return false;}</script>
+<script>function validate_form_29654() {var x, text; var x = document.forms['form_29654']['answer_29654'].value;if (x == '4'){text = '<h3 id="right"><code>R</code>ight</h3>';} else {text = 'a<strong>R</strong>e you su<strong>R</strong>e?';} document.getElementById('result_29654').innerHTML = text; return false;}</script>
 <p>There is also a function for multiple hints:</p>
 <pre class="r"><code>check_hints(hint_text = c(&quot;look into the hint 2&quot;, &quot;look into the hint 1&quot;),
             hint_title = c(&quot;hint 1&quot;, &quot;hint 2&quot;), 
             list_title = &quot;list of hints&quot;)</code></pre>
 <details>
 <summary>list of hints</summary>
-<div id="hint_28738" onclick="return show_hint_28738()">hint 1</div>
-<div id="result_28738" onclick="return show_hint_28738()"></div>
-<script>function show_hint_28738(){var x = document.getElementById('result_28738').innerHTML; if(!x){document.getElementById('result_28738').innerHTML = 'look into the hint 2';} else {document.getElementById('result_28738').innerHTML = '';}}</script>
-<div id="hint_15544" onclick="return show_hint_15544()">hint 2</div>
-<div id="result_15544" onclick="return show_hint_15544()"></div>
-<script>function show_hint_15544(){var x = document.getElementById('result_15544').innerHTML; if(!x){document.getElementById('result_15544').innerHTML = 'look into the hint 1';} else {document.getElementById('result_15544').innerHTML = '';}}</script>
+<div id="hint_53513" onclick="return show_hint_53513()">hint 1</div>
+<div id="result_53513" onclick="return show_hint_53513()"></div>
+<script>function show_hint_53513(){var x = document.getElementById('result_53513').innerHTML; if(!x){document.getElementById('result_53513').innerHTML = 'look into the hint 2';} else {document.getElementById('result_53513').innerHTML = '';}}</script>
+<div id="hint_87766" onclick="return show_hint_87766()">hint 2</div>
+<div id="result_87766" onclick="return show_hint_87766()"></div>
+<script>function show_hint_87766(){var x = document.getElementById('result_87766').innerHTML; if(!x){document.getElementById('result_87766').innerHTML = 'look into the hint 1';} else {document.getElementById('result_87766').innerHTML = '';}}</script>
 </details>
 <p>It is worth mentioning that <code>\n</code> will be removed from
 <code>hint_text</code> and <code>hint_title</code> arguments, so in case
 you want to have a new line use html tag <code>&lt;br&gt;</code>.</p>
 <pre class="r"><code>check_hint(hint_text = &quot;this&lt;br&gt;is&lt;br&gt;a&lt;br&gt;multiline&lt;br&gt;sentence&quot;)</code></pre>
-<div id="hint_32063" onclick="return show_hint_32063()">Click here to see/close the hint</div>
-<div id="result_32063" onclick="return show_hint_32063()"></div>
-<script>function show_hint_32063(){var x = document.getElementById('result_32063').innerHTML; if(!x){document.getElementById('result_32063').innerHTML = 'this<br>is<br>a<br>multiline<br>sentence';} else {document.getElementById('result_32063').innerHTML = '';}}</script>
+<div id="hint_64271" onclick="return show_hint_64271()">Click here to see/close the hint</div>
+<div id="result_64271" onclick="return show_hint_64271()"></div>
+<script>function show_hint_64271(){var x = document.getElementById('result_64271').innerHTML; if(!x){document.getElementById('result_64271').innerHTML = 'this<br>is<br>a<br>multiline<br>sentence';} else {document.getElementById('result_64271').innerHTML = '';}}</script>
 </div>
 </div>
 <div id="inserting-images" class="section level2">
@@ -639,26 +691,26 @@ answer.</p>
                                          &quot;mac.png&quot;,
                                          &quot;linux.png&quot;), 
                                        image_width = 30))</code></pre>
-<form name="form_96082" onsubmit="return validate_form_96082()" method="post">
-<input type="radio" name="answer_96082" id="answer_96082_1" value="1"></input>
+<form name="form_5142" onsubmit="return validate_form_5142()" method="post">
+<input type="radio" name="answer_5142" id="answer_5142_1" value="1"></input>
 <label>
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAQAAABpN6lAAAACiElEQVR42u3d/WvNURzA8fdmydNSamxrRFGKtJVShBChFGlCK4qyKEqRkCiKIkRZlihFlMciikiUIoQoShGJUh7mYbFx2e7s2zIb92673/N+nz/g9HnVrfPD954DZmZmZhb7siiiMLSh8xnNAjZzjLt85Dtr4z9yHiOZx0aOcIv3iZGjK5YAvRhBGRs4xA3eNhk5lgA9Gc4c1nGQ67z5y8gxAehBCbNYwwGu8bpVI2csQDeGMZNV7OMKL/9j5AwC6MIQprOCvVziObUpG7oDA3RmMNNYzh4u8JSatIzcQQHKOM8TvrXByO0OkE1/JrKY7Ynf9O8q2nz0NgT4eeQcxyK2cooHfGnYfHKcAQoY03Dk/PSHzWMGkMco5rOJo9zmQ4s2z3iA1hw5YwLw70fODAYoopTV7Ocqr1K8eYYArE/b5gIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCBARwDIpzhNKzfyKVZxu6w+/nfMzKzZZnMyTauk0S7ladul+VXqOUAAAQQQQAABBBBAAAEEEEAAAQQQQAABBBBAAAEEEEAAAQQQQAABBBBAgOAB5nKHqpAB6ipkLAvZwgnu8zlEgMZl0Y8Jie+6tnGah1SHBxCtEwOYxBJ2cpbHfA0PIFoOg5jKMnb/uim6JjyAaMm7wiu4yLMm16MHABCtK0OZwUoqucyLEAGidU+ABA0QLTelNxZnIEC05J3Vh7nJuxABovVudGt5VYgA0Qrqz6THuZeCM2mGP7OTRV/GN7xcUB0eQLTs+jPpDs7wqIVn0hg/tZXDQKawlF2ca+b1kgDeGoueSever6kNDyBa8gWjysQ/oszMzCzZD2TlTIfjx0T2AAAAAElFTkSuQmCC" alt="image" width="30" height="100%" />
 </label>
 <br />
-<input type="radio" name="answer_96082" id="answer_96082_2" value="2"></input>
+<input type="radio" name="answer_5142" id="answer_5142_2" value="2"></input>
 <label>
 <img src="data:image/png;base64,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" alt="image" width="30" height="100%" />
 </label>
 <br />
-<input type="radio" name="answer_96082" id="answer_96082_3" value="3"></input>
+<input type="radio" name="answer_5142" id="answer_5142_3" value="3"></input>
 <label>
 <img src="data:image/png;base64,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" alt="image" width="30" height="100%" />
 </label>
 <br />
 <input type="submit" value="check"></input>
-<div id="result_96082"></div>
+<div id="result_5142"></div>
 </form>
-<script>function validate_form_96082() {var x, text; var x = document.forms['form_96082']['answer_96082'].value;if (x == '3'){text = 'Correct';} else {text = 'I have a different answer';} document.getElementById('result_96082').innerHTML = text; return false;}</script>
+<script>function validate_form_5142() {var x, text; var x = document.forms['form_5142']['answer_5142'].value;if (x == '3'){text = 'Correct';} else {text = 'I have a different answer';} document.getElementById('result_5142').innerHTML = text; return false;}</script>
 <p>Arguments <code>image_width</code> and <code>image_height</code> also
 except vector of values in case you need different size for different
 pictures.</p>
@@ -666,18 +718,18 @@ pictures.</p>
 markdown markup for it:</p>
 <pre class="r"><code>check_hint(&quot;Here is a map: &lt;br&gt;
 ![](https://upload.wikimedia.org/wikipedia/commons/f/f7/EU-Greece_%28orthographic_projection%29.svg){width=10%}&quot;)</code></pre>
-<div id="hint_54596" onclick="return show_hint_54596()">Click here to see/close the hint</div>
-<div id="result_54596" onclick="return show_hint_54596()"></div>
-<script>function show_hint_54596(){var x = document.getElementById('result_54596').innerHTML; if(!x){document.getElementById('result_54596').innerHTML = 'Here is a map: <br><img src="https://upload.wikimedia.org/wikipedia/commons/f/f7/EU-Greece_%28orthographic_projection%29.svg" alt="" width=10% />';} else {document.getElementById('result_54596').innerHTML = '';}}</script>
+<div id="hint_17527" onclick="return show_hint_17527()">Click here to see/close the hint</div>
+<div id="result_17527" onclick="return show_hint_17527()"></div>
+<script>function show_hint_17527(){var x = document.getElementById('result_17527').innerHTML; if(!x){document.getElementById('result_17527').innerHTML = 'Here is a map: <br><img src="https://upload.wikimedia.org/wikipedia/commons/f/f7/EU-Greece_%28orthographic_projection%29.svg" alt="" width=10% />';} else {document.getElementById('result_17527').innerHTML = '';}}</script>
 </div>
 <div id="some-important-notes" class="section level2">
 <h2>3. Some important notes</h2>
 <ul>
 <li>It is possible to avoid code in the output <code>.html</code>. Just
 use the chunk argument <code>echo=FALSE</code>.</li>
-<li>It is possible to use shortening for <code>type</code> and
-<code>alignment</code> arguments (e. g. <code>type = &quot;s&quot;</code> instead
-of <code>type = &quot;select&quot;</code>).</li>
+<li>It is possible to reduce values for <code>type</code> and
+<code>alignment</code> arguments to the first letter (e. g.
+<code>type = &quot;s&quot;</code> instead of <code>type = &quot;select&quot;</code>).</li>
 <li>For now the package <code>checkdown</code> works only with html
 output and will not print anything for other outputs.</li>
 <li>Be careful with number precision: printing could be different on
@@ -691,12 +743,12 @@ about number of symbols after the comma).</li>
 <pre class="r"><code>log(3/4)</code></pre>
 <pre><code>## [1] -0.2876821</code></pre>
 <pre class="r"><code>check_question(answer = round(log(3/4), 5), placeholder = &quot;0.12345&quot;)</code></pre>
-<form name="form_26914" onsubmit="return validate_form_26914()" method="post">
-<input type="text" placeholder="0.12345" name="answer_26914"></input>
+<form name="form_74544" onsubmit="return validate_form_74544()" method="post">
+<input type="text" placeholder="0.12345" name="answer_74544"></input>
 <input type="submit" value="check"></input>
-<div id="result_26914"></div>
+<div id="result_74544"></div>
 </form>
-<script>function validate_form_26914() {var x, text; var x = document.forms['form_26914']['answer_26914'].value;if (x == '-0.28768'){text = 'Correct';} else {text = 'I have a different answer';} document.getElementById('result_26914').innerHTML = text; return false;}</script>
+<script>function validate_form_74544() {var x, text; var x = document.forms['form_74544']['answer_74544'].value;if (x == '-0.28768'){text = 'Correct';} else {text = 'I have a different answer';} document.getElementById('result_74544').innerHTML = text; return false;}</script>
 </div>
 
 

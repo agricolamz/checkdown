@@ -100,6 +100,18 @@ check_question(answer = c("What", "do", "you", "think?"), type = "in_order")
 
 In this type you need to provide correct order to the `answer` argument and options will be shuffled automatically.
 
+In case answers are long, it is possible to use vertical `alignment`:
+
+```{r}
+check_question(c("heat the water", 
+                 "place a tea bag into the cup",
+                 "pour the hot water over the tea bags",
+                 "steep the tea bag into cup",
+                 "remove the tea bags"), 
+               type = "in_order", alignment = "vertical")
+```
+
+
 ### 1.2 Give some hints with the `check_hint()` function
 
 Sometimes you know in advance what kind of mistakes will your students do. Some students are shy and don't like asking questions, so hints could partially solve this problem. Again all you need is to create a following chunk with the chunck atribute `results='asis'` in your `rmarkdown` document:
@@ -180,7 +192,7 @@ check_hint("Here is a map: <br>
 ## 3. Some important notes
 
 - It is possible to avoid code in the output `.html`. Just use the chunk argument `echo=FALSE`.
-- It is possible to use shortening for `type` and `alignment` arguments (e. g. `type = "s"` instead of `type = "select"`).
+- It is possible to reduce values for `type` and `alignment` arguments to the first letter (e. g. `type = "s"` instead of `type = "select"`).
 - For now the package `checkdown` works only with html output and will not print anything for other outputs.
 - Be careful with number precision: printing could be different on different computers so if you ask your students to calculate `log(3/4)`, it is possible that they will see only 6 or 7 numbers after the comma. So it make sense explicitly specify precision using `round()` function. In that case it make sense to use the `placeholder` argument signaling to students information about number of symbols after the comma).
 
