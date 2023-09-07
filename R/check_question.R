@@ -79,9 +79,15 @@ check_question <- function(answer,
 
   placeholder <- as.character(placeholder[1])
 
-  options <- if(random_answer_order){sample(options)} else {options}
-
   answer <- if(!is.null(answer)){answer |> as.character() |> unique()}
+
+  if(class(options) == "list" & random_answer_order){
+    old_options <- options
+    options <- sample(options)
+    answer <- which(options %in% old_options[as.double(answer)])
+  } else if(random_answer_order) {
+    options <- sample(options)
+  }
 
 # form part ---------------------------------------------------------------
 
@@ -117,7 +123,7 @@ check_question <- function(answer,
       htmltools::tagList(
         htmltools::tags$input(type = type,
                               id = glue::glue("answer_{q_id}_{i}"),
-                              value = options[i]),
+                              value = ifelse(class(options[i]) == "list", i, options[i])),
         htmltools::tags$label(options[i]),
         if(alignment == "vertical"){htmltools::tags$br()})
     })
@@ -205,7 +211,12 @@ check_question <- function(answer,
       paste0(collapse = " ")
 
     condition <- lapply(seq_along(options), function(i){
-      condition_value <- tolower(options[i] %in% answer)
+
+      if(class(options[i]) == "list"){
+        condition_value <- tolower(i %in% answer)
+      } else{
+        condition_value <- tolower(options[i] %in% answer)
+      }
       glue::glue("x{i}.checked == {condition_value}")
     }) |>
       unlist() |>

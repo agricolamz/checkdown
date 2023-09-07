@@ -105,9 +105,9 @@ In case answers are long, it is possible to use vertical `alignment`:
 ```{r}
 check_question(c("heat the water", 
                  "place a tea bag into the cup",
-                 "pour the hot water over the tea bags",
+                 "pour the hot water over the tea bag",
                  "steep the tea bag into cup",
-                 "remove the tea bags"), 
+                 "remove the tea bag"), 
                type = "in_order", alignment = "vertical")
 ```
 
