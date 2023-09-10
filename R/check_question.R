@@ -9,6 +9,7 @@
 #' @param placeholder character that defines a short hint that describes the expected value of an input field. This works with the \code{text} input type only.
 #' @param alignment logical argument for options' alignment: \code{vertical} or \code{horizontal}
 #' @param random_answer_order logical argument that denotes whether answers should be shuffled, when the \code{type} value is \code{select}, \code{radio} or \code{checkbox}
+#' @param title character value that will be displayed as a question title. It is possible to put there the question. You can put markdown markup. Since this argument wraps the form contents with \code{fieldset} tags, you can redefine it appearance with CSS.
 #' @param width_of_in_order character with some values for width of the boxes, when the \code{type} value is \code{in_order}. Possible values: "30px", "20\%"
 #' @param height_of_in_order character with some values for height of the boxes, when the \code{type} value is \code{in_order}. Possible values: "30px", "20\%"
 #' @param style_of_in_order character that contains CSS style for the \code{div} boxes, when the \code{type} value is \code{in_order}
@@ -40,6 +41,7 @@ check_question <- function(answer,
                            alignment = NULL,
                            placeholder = "",
                            random_answer_order = FALSE,
+                           title = NULL,
                            width_of_in_order = paste0(round(1/length(answer)*85), "%"),
                            height_of_in_order = "60px",
                            style_of_in_order = "padding:5px;border: 1px solid #aaaaaa; display: inline-block;",
@@ -63,6 +65,11 @@ check_question <- function(answer,
     q_id <- gsub("\\.", "_", q_id)
   }
 
+  placeholder <- as.character(placeholder[1])
+  right <- as.character(right[1])
+  wrong <- as.character(wrong[1])
+  title <- as.character(title[1])
+
   right <- right |>
     markdown::markdownToHTML(text = _,
                              output = NULL,
@@ -77,7 +84,12 @@ check_question <- function(answer,
     gsub("(<.?p>)|(\n)|(\\#)", "", x = _) |>
     htmltools::HTML()
 
-  placeholder <- as.character(placeholder[1])
+  title <- title |>
+    markdown::markdownToHTML(text = _,
+                             output = NULL,
+                             fragment.only = TRUE) |>
+    gsub("(<.?p>)|(\n)|(\\#)", "", x = _) |>
+    htmltools::HTML()
 
   answer <- if(!is.null(answer)){answer |> as.character() |> unique()}
 
@@ -186,13 +198,27 @@ check_question <- function(answer,
 
   }
 
-  question <- htmltools::tagList(
-    UI_part,
-    htmltools::tags$input(type = "submit", value = button_label),
-    htmltools::tags$div(id = glue::glue("result_{q_id}"))) |>
-    htmltools::tags$form(name = glue::glue("form_{q_id}"),
-                         onsubmit = glue::glue("return validate_form_{q_id}()"),
-                         method = "post")
+  if(!is.null(title)){
+    question <- htmltools::tagList(
+      htmltools::tags$legend(title),
+      UI_part,
+      htmltools::tags$input(type = "submit", value = button_label),
+      htmltools::tags$div(id = glue::glue("result_{q_id}"))) |>
+      htmltools::tags$fieldset() |>
+      htmltools::tags$form(name = glue::glue("form_{q_id}"),
+                           onsubmit = glue::glue("return validate_form_{q_id}()"),
+                           method = "post")
+  } else{
+    question <- htmltools::tagList(
+      UI_part,
+      htmltools::tags$input(type = "submit", value = button_label),
+      htmltools::tags$div(id = glue::glue("result_{q_id}"))) |>
+      htmltools::tags$form(name = glue::glue("form_{q_id}"),
+                           onsubmit = glue::glue("return validate_form_{q_id}()"),
+                           method = "post")
+  }
+
+
 
 # javascript part ---------------------------------------------------------
 

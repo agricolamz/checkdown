@@ -111,6 +111,13 @@ check_question(c("heat the water",
                type = "in_order", alignment = "vertical")
 ```
 
+You can put the question itself within the `check_question()` function using the `title` argument.
+
+```{r}
+check_question(answer = 42, title = "Put a number from 1 to 100")
+```
+
+It is possible to put some markdown markup whithin the `title` argument. Since this argument wraps the form contents with \code{fieldset} tags, you can redefine it appearance with CSS.
 
 ### 1.2 Give some hints with the `check_hint()` function
 
