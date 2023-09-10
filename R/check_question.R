@@ -93,7 +93,7 @@ check_question <- function(answer,
 
   answer <- if(!is.null(answer)){answer |> as.character() |> unique()}
 
-  if(class(options) == "list" & random_answer_order){
+  if(inherits(options, "list") & random_answer_order){
     old_options <- options
     options <- sample(options)
     answer <- which(options %in% old_options[as.double(answer)])
@@ -124,7 +124,7 @@ check_question <- function(answer,
         htmltools::tags$input(type = type,
                               name = glue::glue("answer_{q_id}"),
                               id = glue::glue("answer_{q_id}_{i}"),
-                              value = ifelse(class(options[i]) == "list", i, options[i])),
+                              value = ifelse(inherits(options[i], "list"), i, options[i])),
         htmltools::tags$label(options[i]),
         if(alignment == "vertical"){htmltools::tags$br()})
     })
@@ -135,7 +135,7 @@ check_question <- function(answer,
       htmltools::tagList(
         htmltools::tags$input(type = type,
                               id = glue::glue("answer_{q_id}_{i}"),
-                              value = ifelse(class(options[i]) == "list", i, options[i])),
+                              value = ifelse(inherits(options[i], "list"), i, options[i])),
         htmltools::tags$label(options[i]),
         if(alignment == "vertical"){htmltools::tags$br()})
     })
@@ -238,7 +238,7 @@ check_question <- function(answer,
 
     condition <- lapply(seq_along(options), function(i){
 
-      if(class(options[i]) == "list"){
+      if(inherits(options[i], "list")){
         condition_value <- tolower(i %in% answer)
       } else{
         condition_value <- tolower(options[i] %in% answer)
