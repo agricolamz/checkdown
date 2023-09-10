@@ -1,4 +1,4 @@
-checkdown 0.0.9 (...08.2023)
+checkdown 0.0.9 (10.08.2023)
 - add type `in_order` to the `check_question()` function
 - fix bug with image insertion in `check_hint()` function (thanks to Olga Alieva for bringing it up)
 - fix type argument matching
