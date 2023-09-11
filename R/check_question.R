@@ -68,7 +68,6 @@ check_question <- function(answer,
   placeholder <- as.character(placeholder[1])
   right <- as.character(right[1])
   wrong <- as.character(wrong[1])
-  title <- as.character(title[1])
 
   right <- right |>
     markdown::markdownToHTML(text = _,
@@ -84,12 +83,15 @@ check_question <- function(answer,
     gsub("(<.?p>)|(\n)|(\\#)", "", x = _) |>
     htmltools::HTML()
 
+  if(!is.null(title[1])){
+  title <- as.character(title[1])
   title <- title |>
     markdown::markdownToHTML(text = _,
                              output = NULL,
                              fragment.only = TRUE) |>
     gsub("(<.?p>)|(\n)|(\\#)", "", x = _) |>
     htmltools::HTML()
+  }
 
   answer <- if(!is.null(answer)){answer |> as.character() |> unique()}
 
