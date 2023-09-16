@@ -3,6 +3,7 @@
 export(check_hint)
 export(check_hints)
 export(check_question)
+export(insert_audio)
 export(insert_images)
 importFrom(glue,glue)
 importFrom(htmltools,div)

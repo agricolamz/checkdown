@@ -21,16 +21,14 @@ insert_images(
 \item{image_height}{image heights. Could be absolute value in pixels or percantage.}
 }
 \value{
-returns the string with html code
+returns set of html tags
 }
 \description{
 Insert multiple images into questions and hints
 }
 \examples{
 
-# ```{r, results='asis', echo=FALSE}
-# insert_images(c("1.png", "2.png"))
-# ```
+insert_images(c("1.png", "2.png"))
 
 }
 \author{

@@ -1,4 +1,4 @@
-#' Create check-fields and check-boxes for 'rmarkdown'
+#' Create hint for 'rmarkdown'
 #'
 #' @param hint_text hint paragraph text; can contain markdown
 #' @param hint_title click paragraph text; can contain markdown
@@ -10,9 +10,7 @@
 #' @author George Moroz <agricolamz@gmail.com>
 #' @examples
 #'
-#' # ```{r, echo=FALSE}
-#' # check_hint("You can use argument `echo=FALSE`!")
-#' # ```
+#' check_hint("You can use argument `echo=FALSE`!")
 #'
 #' @export
 #'
@@ -25,6 +23,10 @@ check_hint <- function(hint_text,
                        hint_title = "Click here to see/close the hint",
                        type = c("onclick", "onmouseover", "ondblclick"),
                        hint_id = sample(1e5:1, 1)){
+
+  lapply(c(hint_text, hint_title), function(argument){
+    stopifnot(length(argument) == 1)
+  })
 
   type <- match.arg(type)
 

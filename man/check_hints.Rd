@@ -34,9 +34,7 @@ Create check-fields and check-boxes for 'rmarkdown'
 }
 \examples{
 
-# ```{r, echo=FALSE}
-# check_hints(1:4)
-# ```
+check_hints(1:4)
 
 }
 \author{

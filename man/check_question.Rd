@@ -58,9 +58,7 @@ Create check-fields and check-boxes for 'rmarkdown'
 }
 \examples{
 
-# ```{r, echo=FALSE}
-# check_question(answer = 5)
-# ```
+check_question(answer = 5)
 
 }
 \author{

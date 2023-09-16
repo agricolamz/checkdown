@@ -20,9 +20,7 @@
 #' @author George Moroz <agricolamz@gmail.com>
 #' @examples
 #'
-#' # ```{r, echo=FALSE}
-#' # check_question(answer = 5)
-#' # ```
+#' check_question(answer = 5)
 #'
 #' @export
 #'
@@ -49,6 +47,12 @@ check_question <- function(answer,
 
 # polish arguments --------------------------------------------------------
 
+  lapply(c(right, wrong, button_label, placeholder), function(argument){
+    stopifnot(is.character(argument))
+    stopifnot(length(argument) == 1)
+  })
+
+
   if(is.null(options)){
     type <- match.arg(type, c("text", "in_order"))
   } else {
@@ -64,10 +68,6 @@ check_question <- function(answer,
   if(grepl("\\.", q_id)){
     q_id <- gsub("\\.", "_", q_id)
   }
-
-  placeholder <- as.character(placeholder[1])
-  right <- as.character(right[1])
-  wrong <- as.character(wrong[1])
 
   right <- right |>
     markdown::markdownToHTML(text = _,
@@ -196,8 +196,6 @@ check_question <- function(answer,
           htmltools::tags$tbody(id = glue::glue("task_{q_id}")) |>
           htmltools::tags$table()
       }
-
-
   }
 
   if(!is.null(title)){

@@ -5,7 +5,7 @@
 #' @param image_width image widths. Could be absolute value in pixels or percantage.
 #' @param image_height image heights. Could be absolute value in pixels or percantage.
 #'
-#' @return returns the string with html code
+#' @return returns set of html tags
 #'
 #' @importFrom htmltools tags
 #' @importFrom glue glue
@@ -13,9 +13,7 @@
 #' @author George Moroz <agricolamz@gmail.com>
 #' @examples
 #'
-#' # ```{r, results='asis', echo=FALSE}
-#' # insert_images(c("1.png", "2.png"))
-#' # ```
+#' insert_images(c("1.png", "2.png"))
 #'
 #' @export
 #'

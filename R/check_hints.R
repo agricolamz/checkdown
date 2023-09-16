@@ -1,4 +1,4 @@
-#' Create check-fields and check-boxes for 'rmarkdown'
+#' Create list of hints for 'rmarkdown'
 #'
 #' @param hint_text hint paragraph texts; can contain markdown
 #' @param hint_title hint title texts; can contain markdown
@@ -12,9 +12,7 @@
 #' @author George Moroz <agricolamz@gmail.com>
 #' @examples
 #'
-#' # ```{r, echo=FALSE}
-#' # check_hints(1:4)
-#' # ```
+#' check_hints(1:4)
 #'
 #' @export
 #'
@@ -31,6 +29,10 @@ check_hints <- function(hint_text,
                         type = c("onclick", "onmouseover", "ondblclick")){
 
   type <- match.arg(type)
+
+  lapply(c(hint_title_prefix, hint_title_suffix, list_title), function(argument){
+    stopifnot(length(argument) == 1)
+  })
 
   hint_title <- paste0(hint_title_prefix, hint_title, hint_title_suffix)
   df <- data.frame(hint_text, hint_title, stringsAsFactors = FALSE)

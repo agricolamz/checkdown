@@ -28,9 +28,7 @@ Create check-fields and check-boxes for 'rmarkdown'
 }
 \examples{
 
-# ```{r, echo=FALSE}
-# check_hint("You can use argument `echo=FALSE`!")
-# ```
+check_hint("You can use argument `echo=FALSE`!")
 
 }
 \author{
