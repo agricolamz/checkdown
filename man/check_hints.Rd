@@ -2,7 +2,7 @@
 % Please edit documentation in R/check_hints.R
 \name{check_hints}
 \alias{check_hints}
-\title{Create check-fields and check-boxes for 'rmarkdown'}
+\title{Create list of hints for 'rmarkdown'}
 \usage{
 check_hints(
   hint_text,
@@ -30,7 +30,7 @@ check_hints(
 returns the html tags and javascript code
 }
 \description{
-Create check-fields and check-boxes for 'rmarkdown'
+Create list of hints for 'rmarkdown'
 }
 \examples{
 

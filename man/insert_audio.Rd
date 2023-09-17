@@ -2,7 +2,7 @@
 % Please edit documentation in R/insert_audio.R
 \name{insert_audio}
 \alias{insert_audio}
-\title{Insert multiple images into questions and hints}
+\title{Insert audio}
 \usage{
 insert_audio(
   src,
@@ -14,23 +14,23 @@ insert_audio(
 )
 }
 \arguments{
-\item{src}{URL}
+\item{src}{character. It specifies the location (URL) of the audio file.}
 
-\item{controls}{boolian}
+\item{controls}{logical. When \code{TRUE}, it specifies that audio controls should be displayed.}
 
-\item{autoplay}{boolian}
+\item{autoplay}{logical. When \code{TRUE}, the audio will automatically start playing as soon as it can do so without stopping.}
 
-\item{loop}{boolian}
+\item{loop}{logical. When \code{TRUE}, it specifies that the audio will start over again, every time it is finished.}
 
-\item{muted}{boolian}
+\item{muted}{logical. When \code{TRUE}, it specifies that the audio output should be muted.}
 
-\item{preload}{character}
+\item{preload}{character. It specifies if and how the author thinks that the audio file should be loaded when the page loads. Possible values are \code{none}, \code{auto} and \code{metadata}}
 }
 \value{
 returns set of html tags
 }
 \description{
-Insert multiple images into questions and hints
+Insert audio
 }
 \examples{
 

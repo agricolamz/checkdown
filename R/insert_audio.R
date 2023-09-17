@@ -1,16 +1,15 @@
 #' Insert audio
 #'
-#' @param src URL
-#' @param controls boolian
-#' @param autoplay boolian
-#' @param loop boolian
-#' @param muted boolian
-#' @param preload character
+#' @param src character. It specifies the location (URL) of the audio file.
+#' @param controls logical. When \code{TRUE}, it specifies that audio controls should be displayed.
+#' @param autoplay logical. When \code{TRUE}, the audio will automatically start playing as soon as it can do so without stopping.
+#' @param loop logical. When \code{TRUE}, it specifies that the audio will start over again, every time it is finished.
+#' @param muted logical. When \code{TRUE}, it specifies that the audio output should be muted.
+#' @param preload character. It specifies if and how the author thinks that the audio file should be loaded when the page loads. Possible values are \code{none}, \code{auto} and \code{metadata}
 #'
 #' @return returns set of html tags
 #'
 #' @importFrom htmltools tags
-#' @importFrom glue glue
 #'
 #' @author George Moroz <agricolamz@gmail.com>
 #' @examples
@@ -29,28 +28,23 @@ insert_audio <- function(src,
 
   preload <- match.arg(preload)
 
-  lapply(c(controls, autoplay, loop, muted), function(argument){
+  arguments <- c(controls = controls,
+                 autoplay = autoplay,
+                 loop = loop,
+                 muted = muted)
+
+  lapply(arguments, function(argument){
     stopifnot(is.logical(argument))
     stopifnot(length(argument) == 1)
   })
 
-  result <- htmltools::tags$audio(src, preload = preload)
+  result <- htmltools::tags$source(src = src) |>
+    htmltools::tags$audio(preload = preload)
 
-  if(controls){
-    result$attribs <- append(result$attribs, list(controls = NA))
-  }
-
-  if(autoplay){
-    result$attribs <- append(result$attribs, list(autoplay = NA))
-  }
-
-  if(loop){
-    result$attribs <- append(result$attribs, list(loop = NA))
-  }
-
-  if(muted){
-    result$attribs <- append(result$attribs, list(loop = NA))
-  }
+  result$attribs <- arguments |>
+    lapply(X = _, function(i){if(i) {NA} else {NULL}}) |>
+    Filter(x = _, Negate(is.null)) |>
+    append(values = _, result$attribs)
 
   return(result)
 }
