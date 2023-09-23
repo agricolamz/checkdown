@@ -171,7 +171,7 @@ check_question <- function(answer,
 
       UI_part <- answers |>
         htmltools::tags$tr(id = glue::glue("task_{q_id}")) |>
-        htmltools::tags$table()
+        htmltools::tags$table(`data-quarto-disable-processing` = "true")
 
       } else if(alignment == "vertical"){
         answers <- lapply(answer_sample, function(i){
@@ -194,7 +194,7 @@ check_question <- function(answer,
 
         UI_part <- answers |>
           htmltools::tags$tbody(id = glue::glue("task_{q_id}")) |>
-          htmltools::tags$table()
+          htmltools::tags$table(`data-quarto-disable-processing` = "true")
       }
   }
 

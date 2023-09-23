@@ -1,6 +1,7 @@
-checkdown 0.0.10 (16.08.2023)
+checkdown 0.0.10 (23.08.2023)
 - fix option `title` to the `check_question()` function
 - add the insert_audio() function
+- fix `in_order` option for quarto
 
 checkdown 0.0.9 (10.08.2023)
 - add type `in_order` to the `check_question()` function
