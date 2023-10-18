@@ -1,6 +1,9 @@
+checkdown 0.0.11 (18.10.2023)
+- add the `insert_score()` function (thanks to @Julieblas for bringing it up)
+
 checkdown 0.0.10 (23.08.2023)
 - fix option `title` to the `check_question()` function
-- add the insert_audio() function
+- add the `insert_audio()` function
 - fix `in_order` option for quarto
 
 checkdown 0.0.9 (10.08.2023)

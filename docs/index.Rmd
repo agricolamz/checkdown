@@ -92,7 +92,7 @@ If you don't want to give the possibility of automatically check your question, 
 check_question(NULL, options = c("apple", "banana", "bread"), type = "radio")
 ```
 
-There is also an experimental type of question `in_order`, wheere students need to drag and drop words in the correct order:
+There is also an type of question `in_order`, where students need to swap words over in the correct order:
 
 ```{r}
 check_question(answer = c("What", "do", "you", "think?"), type = "in_order")
@@ -117,7 +117,19 @@ You can put the question itself within the `check_question()` function using the
 check_question(answer = 42, title = "Put a number from 1 to 100")
 ```
 
-It is possible to put some markdown markup whithin the `title` argument. Since this argument wraps the form contents with \code{fieldset} tags, you can redefine it appearance with CSS.
+It is possible to put some markdown markup within the `title` argument. Since this argument wraps the form contents with \code{fieldset} tags, you can redefine it appearance with CSS.
+
+There is an additional function `insert_score()` that make it possible to add a counter of the correct answers on the page (thanks to [Julieblas](https://github.com/Julieblas) for an idea). It make sense to use this function inline like here: 
+
+#### Results: `r insert_score()` out of 13
+
+The previous line was generated with the following code:
+
+```{markdown}
+#### Results: `r insert_score()` out of 13
+```
+
+This function can be located anywhere on your page (before the questions, after the questions, even in the middle), however right now it doesn't work, if there are multiple instances of this function call per page.
 
 ### 1.2 Give some hints with the `check_hint()` function
 

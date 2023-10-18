@@ -226,7 +226,7 @@ check_question <- function(answer,
 
     answer <- paste0("x == '", answer, "'", collapse = '|')
 
-    js_script <- glue::glue("<script>function validate_form_{q_id}() {{var x, text; var x = document.forms['form_{q_id}']['answer_{q_id}'].value;if ({answer}){{text = '{right}';}} else {{text = '{wrong}';}} document.getElementById('result_{q_id}').innerHTML = text; return false;}}</script>")
+    js_script <- glue::glue("<script>function validate_form_{q_id}() {{var x, text; var x = document.forms['form_{q_id}']['answer_{q_id}'].value;if ({answer}){{text = '{right}';}} else {{text = '{wrong}';}} document.getElementById('result_{q_id}').innerHTML = text; evaluate_final_score(); return false;}}")
 
   } else if(type == "checkbox"){
 
@@ -248,7 +248,7 @@ check_question <- function(answer,
       unlist() |>
       paste0(collapse = "&")
 
-    js_script <- glue::glue("<script>function validate_form_{q_id}() {{var text; {vars} if ({condition}){{text = '{right}';}} else {{text = '{wrong}';}} document.getElementById('result_{q_id}').innerHTML = text; return false;}}</script>")
+    js_script <- glue::glue("<script>function validate_form_{q_id}() {{var text; {vars} if ({condition}){{text = '{right}';}} else {{text = '{wrong}';}} document.getElementById('result_{q_id}').innerHTML = text; evaluate_final_score(); return false;}}")
   } else if(type == "in_order"){
     if(alignment == "horizontal"){
       condition <- lapply(seq_along(answer), function(i){
@@ -258,7 +258,7 @@ check_question <- function(answer,
         unlist() |>
         paste0(collapse = "&")
 
-      js_check_question <- glue::glue("function validate_form_{q_id}() {{var text;var ch = document.getElementById('task_{q_id}').children; if({condition}){{text = '{right}';}} else {{text = '{wrong}';}} document.getElementById('result_{q_id}').innerHTML = text; return false;}}")
+      js_check_question <- glue::glue("function validate_form_{q_id}() {{var text;var ch = document.getElementById('task_{q_id}').children; if({condition}){{text = '{right}';}} else {{text = '{wrong}';}} document.getElementById('result_{q_id}').innerHTML = text; evaluate_final_score(); return false;}}")
 
       js_swap <- "function swapElementsH(element) {const parent = element.parentNode; const afterNode = parent.nextElementSibling; const beforeNode = parent.previousElementSibling; parent.insertAdjacentElement('beforebegin', afterNode); parent.insertAdjacentElement('afterend', beforeNode);}"
 
@@ -270,14 +270,26 @@ check_question <- function(answer,
         unlist() |>
         paste0(collapse = "&")
 
-      js_check_question <- glue::glue("function validate_form_{q_id}() {{var text;var ch = document.getElementById('task_{q_id}').children; if({condition}){{text = '{right}';}} else {{text = '{wrong}';}} document.getElementById('result_{q_id}').innerHTML = text; return false;}}")
+      js_check_question <- glue::glue("function validate_form_{q_id}() {{var text;var ch = document.getElementById('task_{q_id}').children; if({condition}){{text = '{right}';}} else {{text = '{wrong}';}} document.getElementById('result_{q_id}').innerHTML = text; evaluate_final_score(); return false;}}")
 
       js_swap <- "function swapElementsV(element) {const parent = element.parentNode.parentNode; const afterNode = parent.nextElementSibling; const beforeNode = parent.previousElementSibling; parent.insertAdjacentElement('beforebegin', afterNode); parent.insertAdjacentElement('afterend', beforeNode);}"
 
     }
 
-    js_script <- glue::glue("<script>{js_check_question}{js_swap}</script>")
+    js_script <- glue::glue("<script>{js_check_question}{js_swap}")
   }
+
+  data.frame(q_id = q_id,
+             right = right |> as.character() |> gsub(x = _, pattern = "<.*?>", replacement = "")) |>
+    write.table(file = getOption("checkdown.table"),
+                append = TRUE,
+                col.names = FALSE,
+                row.names = FALSE,
+                sep = ",")
+
+  js_script <- paste0(js_script,
+                      insert_js_code_for_score_calculation(),
+                      "</script>")
 
   htmltools::tagList(question, htmltools::HTML(js_script))
 }
