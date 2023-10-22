@@ -125,6 +125,18 @@ check_question(answer = 42, title = "Put a number from 1 to 100")
 
 It is possible to put some markdown markup whithin the `title` argument. Since this argument wraps the form contents with \code{fieldset} tags, you can redefine it appearance with CSS.
 
+There is an additional function `insert_score()` that make it possible to add a counter of the correct answers on the page (thanks to [Julieblas](https://github.com/Julieblas) for an idea). It make sense to use this function inline like here: 
+
+#### Results: `r insert_score()` out of 13
+
+The previous line was generated with the following code:
+
+```{markdown}
+#### Results: `r insert_score()` out of 13
+```
+
+This function can be located anywhere on your page (before the questions, after the questions, even in the middle), however right now it doesn't work, if there are multiple instances of this function call per page.
+
 ### 1.2 Give some hints with the `check_hint()` function
 
 Sometimes you know in advance what kind of mistakes will your students do. Some students are shy and don't like asking questions, so hints could partially solve this problem. Again all you need is to create a following chunk with the chunck atribute `results='asis'` in your `rmarkdown` document:
