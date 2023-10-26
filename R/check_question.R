@@ -7,7 +7,7 @@
 #' @param type character that defines type of the list. Possible values: \code{text}, \code{select}, \code{radio}, \code{checkbox}, \code{in_order}
 #' @param button_label character value that will be displayed on the button
 #' @param placeholder character that defines a short hint that describes the expected value of an input field. This works with the \code{text} input type only.
-#' @param alignment logical argument for options' alignment: \code{vertical} or \code{horizontal}
+#' @param alignment character argument for options' alignment: \code{vertical} or \code{horizontal}
 #' @param random_answer_order logical argument that denotes whether answers should be shuffled, when the \code{type} value is \code{select}, \code{radio} or \code{checkbox}
 #' @param title character value that will be displayed as a question title. It is possible to put there the question. You can put markdown markup. Since this argument wraps the form contents with \code{fieldset} tags, you can redefine it appearance with CSS.
 #' @param width_of_in_order character with some values for width of the boxes, when the \code{type} value is \code{in_order}. Possible values: "30px", "20\%"

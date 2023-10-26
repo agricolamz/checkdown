@@ -1,3 +1,6 @@
+checkdown 0.0.12 (27.10.2023)
+- fast fix after the `insert_score()` problem (thanks to @falseflax and Dasha Gurevich for bringing it up)
+
 checkdown 0.0.11 (18.10.2023)
 - add the `insert_score()` function (thanks to @Julieblas for bringing it up)
 

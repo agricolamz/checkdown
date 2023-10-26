@@ -34,7 +34,7 @@ check_question(
 
 \item{button_label}{character value that will be displayed on the button}
 
-\item{alignment}{logical argument for options' alignment: \code{vertical} or \code{horizontal}}
+\item{alignment}{character argument for options' alignment: \code{vertical} or \code{horizontal}}
 
 \item{placeholder}{character that defines a short hint that describes the expected value of an input field. This works with the \code{text} input type only.}
 
