@@ -1,5 +1,5 @@
 checkdown 0.0.12 (27.10.2023)
-- fast fix after the `insert_score()` problem (thanks to @falseflax and Dasha Gurevich for bringing it up)
+- fast fix after the `insert_score()` problem (thanks to Ulyana Astafyeva and Dasha Gurevich for bringing it up)
 
 checkdown 0.0.11 (18.10.2023)
 - add the `insert_score()` function (thanks to @Julieblas for bringing it up)
@@ -29,7 +29,7 @@ checkdown 0.0.6 (16.10.2020)
 - correct the `check_hints` problem
 
 checkdown 0.0.5 (14.05.2020)
-- if argument `answer` in the `check_question()` function is NULL thene remove check button. Thnaks to @ManuelSpinola for the idea
+- remove check button if argument `answer` in the `check_question()` function is NULL. Thanks to @ManuelSpinola for the idea
 - correct the `insert_images()` function
 
 checkdown 0.0.4 (13.04.2020)
