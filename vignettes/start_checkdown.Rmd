@@ -98,7 +98,7 @@ If you don't want to give the possibility of automatically check your question, 
 check_question(NULL, options = c("apple", "banana", "bread"), type = "radio")
 ```
 
-There is also an experimental type of question `in_order`, wheere students need to drag and drop words in the correct order:
+There is also an type of question `in_order`, where students need to swap words over in the correct order:
 
 ```{r}
 check_question(answer = c("What", "do", "you", "think?"), type = "in_order")
@@ -123,9 +123,9 @@ You can put the question itself within the `check_question()` function using the
 check_question(answer = 42, title = "Put a number from 1 to 100")
 ```
 
-It is possible to put some markdown markup whithin the `title` argument. Since this argument wraps the form contents with \code{fieldset} tags, you can redefine it appearance with CSS.
+It is possible to put some markdown markup within the `title` argument. Since this argument wraps the form contents with \code{fieldset} tags, you can redefine it appearance with CSS.
 
-There is an additional function `insert_score()` that make it possible to add a counter of the correct answers on the page (thanks to [Julieblas](https://github.com/Julieblas) for an idea). It make sense to use this function inline like here: 
+There is an additional function `insert_score()` that make it possible to add a counter of the correct answers on the page (thanks to Julieblas for an idea). It make sense to use this function inline like here: 
 
 #### Results: `r insert_score()` out of 13
 
@@ -194,7 +194,7 @@ check_hint(hint_text = "this<br>is<br>a<br>multiline<br>sentence")
 
 Sometimes it is nice to use images as a question. It also could be useful to insert images in hints. In order to do it you need to use `insert_images()` function, and enumerate the correct answer.
 
-```{r, eval=FALSE}
+```{r}
 check_question(answer = 3, 
                type = "radio",
                options = insert_images(c("windows.png", 
@@ -207,11 +207,10 @@ Arguments `image_width` and `image_height` also except vector of values in case 
 
 In case you want to use pictures within hints, it is better to use markdown markup for it:
 
-```{r, eval=FALSE}
+```{r}
 check_hint("Here is a map: <br>
 ![](https://upload.wikimedia.org/wikipedia/commons/f/f7/EU-Greece_%28orthographic_projection%29.svg){width=10%}")
 ```
-
 
 ## 3. Some important notes
 
