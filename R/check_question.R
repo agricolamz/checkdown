@@ -123,11 +123,11 @@ check_question <- function(answer,
 
     UI_part <- lapply(seq_along(options), function(i){
       htmltools::tagList(
-        htmltools::tags$input(type = type,
-                              name = glue::glue("answer_{q_id}"),
-                              id = glue::glue("answer_{q_id}_{i}"),
-                              value = ifelse(inherits(options[i], "list"), i, options[i])),
-        htmltools::tags$label(options[i]),
+        htmltools::tags$label(htmltools::tags$input(type = type,
+                                                    name = glue::glue("answer_{q_id}"),
+                                                    id = glue::glue("answer_{q_id}_{i}"),
+                                                    value = ifelse(inherits(options[i], "list"), i, options[i])),
+                              options[i]),
         if(alignment == "vertical"){htmltools::tags$br()})
     })
 
@@ -135,10 +135,10 @@ check_question <- function(answer,
 
     UI_part <- lapply(seq_along(options), function(i){
       htmltools::tagList(
-        htmltools::tags$input(type = type,
-                              id = glue::glue("answer_{q_id}_{i}"),
-                              value = ifelse(inherits(options[i], "list"), i, options[i])),
-        htmltools::tags$label(options[i]),
+        htmltools::tags$label(htmltools::tags$input(type = type,
+                                                    id = glue::glue("answer_{q_id}_{i}"),
+                                                    value = ifelse(inherits(options[i], "list"), i, options[i])),
+                              options[i]),
         if(alignment == "vertical"){htmltools::tags$br()})
     })
   } else if(type == "in_order" & is.null(options)){

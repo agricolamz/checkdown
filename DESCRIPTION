@@ -1,7 +1,7 @@
 Package: checkdown
 Type: Package
 Title: Check-Fields and Check-Boxes  for 'rmarkdown'
-Version: 0.0.12
+Version: 0.0.13
 Depends: R (>= 3.5.0)
 Authors@R: c(person("George", "Moroz",
              role = c("aut", "cre"),
@@ -18,5 +18,5 @@ BugReports: https://github.com/agricolamz/checkdown/issues
 Suggests: rmarkdown, knitr
 License: GPL (>= 2)
 Encoding: UTF-8
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.3
 VignetteBuilder: knitr

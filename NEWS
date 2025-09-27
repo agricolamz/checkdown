@@ -1,3 +1,6 @@
+checkdown 0.0.13 (27.09.2025)
+- fix the issue with the alignment issue with longer answer options #11, thx to @elenlefoll
+
 checkdown 0.0.12 (27.10.2023)
 - fast fix after the `insert_score()` problem (thanks to Ulyana Astafyeva and Dasha Gurevich for bringing it up)
 
